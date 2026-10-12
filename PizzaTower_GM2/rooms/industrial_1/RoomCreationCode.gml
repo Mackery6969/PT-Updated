@@ -1,0 +1,13 @@
+global.gameframe_caption_text = lang_get_value("caption_industrial");
+if (!obj_secretmanager.init)
+{
+	obj_secretmanager.init = true;
+	secret_add(noone, function()
+	{
+		secret_open_portal(0);
+	});
+	secret_add(noone, function()
+	{
+		secret_open_portal(1);
+	});
+}

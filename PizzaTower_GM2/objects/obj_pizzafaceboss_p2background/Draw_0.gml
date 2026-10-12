@@ -1,0 +1,8 @@
+draw_set_alpha(0.1);
+shader_set(shd_rainbow);
+shader_set_uniform_f(shd_rainbow_time, time);
+shader_set_uniform_f(shd_rainbow_speed, 0.1);
+draw_set_color(c_white);
+draw_rectangle(-100, -100, SCREEN_WIDTH + 100, SCREEN_HEIGHT + 100, false);
+shader_reset();
+draw_set_alpha(1);

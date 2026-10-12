@@ -1,0 +1,58 @@
+if (!global.horse && !instance_exists(obj_jumpscare) && (obj_player.state == states.normal || obj_player.state == states.mach1 || obj_player.state == states.mach2 || obj_player.state == states.mach3 || obj_player.state == states.Sjumpprep) && sprite_index == spr_doorkey && obj_player.key_up && obj_player.grounded && global.key_inv && place_meeting(x, y, obj_player))
+{
+	ds_list_add(global.saveroom, id);
+	fmod_event_one_shot_3d("event:/sfx/misc/keyunlock", x, y);
+	fmod_event_one_shot("event:/sfx/misc/cheers");
+	fmod_event_one_shot_3d("event:/sfx/voice/ok", x, y);
+	obj_player.state = states.victory;
+	obj_player.image_index = 0;
+	image_index = 0;
+	sprite_index = spr_doorkeyopen;
+	image_speed = 0.35;
+	instance_create(x + 50, y + 50, obj_lock);
+	global.key_inv = false;
+}
+if (floor(image_index) == 2)
+{
+	image_speed = 0;
+}
+if (place_meeting(x, y, obj_player) && !instance_exists(obj_jumpscare) && floor(obj_player.image_index) == (obj_player.image_number - 1) && obj_player.state == states.victory)
+{
+	with (obj_player)
+	{
+		obj_player.targetDoor = other.targetDoor;
+		obj_player.targetRoom = other.targetRoom;
+		if (!instance_exists(obj_fadeout))
+		{
+			instance_create(x, y, obj_fadeout);
+		}
+	}
+}
+if (place_meeting(x, y, obj_doorA))
+{
+	targetDoor = "A";
+}
+if (place_meeting(x, y, obj_doorB))
+{
+	targetDoor = "B";
+}
+if (place_meeting(x, y, obj_doorC))
+{
+	targetDoor = "C";
+}
+if (place_meeting(x, y, obj_doorD))
+{
+	targetDoor = "D";
+}
+if (place_meeting(x, y, obj_doorE))
+{
+	targetDoor = "E";
+}
+if (place_meeting(x, y, obj_doorF))
+{
+	targetDoor = "F";
+}
+if (place_meeting(x, y, obj_doorG))
+{
+	targetDoor = "G";
+}

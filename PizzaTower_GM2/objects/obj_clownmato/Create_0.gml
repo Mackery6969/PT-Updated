@@ -1,0 +1,17 @@
+scr_initenemy();
+stompable = false;
+grav = 0.5;
+hsp = 0;
+vsp = 0;
+state = states.walk;
+stunned = 0;
+alarm[0] = 150;
+shot = false;
+reset = false;
+flash = false;
+idlespr = spr_clownmato_fall;
+stunfallspr = spr_clownmato_stun;
+walkspr = spr_clownmato_fall;
+grabbedspr = spr_clownmato_stun;
+scaredspr = spr_clownmato_fall;
+spr_dead = spr_clownmato_dead;

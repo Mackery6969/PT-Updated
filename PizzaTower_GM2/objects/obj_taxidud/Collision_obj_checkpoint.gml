@@ -1,0 +1,17 @@
+if (!playerid.visible)
+{
+	global.failcutscene = false;
+	with (obj_player)
+	{
+		fmod_event_one_shot("event:/sfx/misc/taxibeep");
+		state = states.normal;
+		instance_create(x, y, obj_genericpoofeffect);
+		cutscene = false;
+		if (isgustavo)
+		{
+			state = states.ratmount;
+			sprite_index = spr_player_ratmountidle;
+		}
+	}
+	obj_player.visible = true;
+}

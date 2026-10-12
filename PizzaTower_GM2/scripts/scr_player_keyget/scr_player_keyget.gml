@@ -1,0 +1,25 @@
+function scr_player_keyget()
+{
+	hsp = 0;
+	vsp = 0;
+	image_speed = 0.35;
+	movespeed = 0;
+	mach2 = 0;
+	jumpAnim = true;
+	landAnim = false;
+	crouchAnim = true;
+	global.combotime = 60;
+	sprite_index = spr_keyget;
+	if (!keysound && floor(image_index) >= 16)
+	{
+		keysound = true;
+		scr_fmod_soundeffect(snd_voiceok, obj_player.x, obj_player.y);
+	}
+	if (ANIMATION_END)
+	{
+		global.keyget = false;
+		state = states.normal;
+		image_index = 0;
+		instance_create(x, y, obj_keyfollow);
+	}
+}

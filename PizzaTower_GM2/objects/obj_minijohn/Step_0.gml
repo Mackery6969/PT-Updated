@@ -1,0 +1,190 @@
+var player = instance_nearest(x, y, obj_player);
+switch (state)
+{
+	case states.idle:
+		scr_enemy_idle();
+		break;
+	case states.walk:
+		scr_enemy_walk();
+		break;
+	case states.hit:
+		scr_enemy_hit();
+		break;
+	case states.stun:
+		scr_enemy_stun();
+		break;
+	case states.pizzagoblinthrow:
+		scr_pizzagoblin_throw();
+		break;
+	case states.grabbed:
+		scr_enemy_grabbed();
+		break;
+	case states.chase:
+		scr_enemy_chase();
+		break;
+	case states.staggered:
+		scr_enemy_staggered();
+		break;
+	case states.pizzaheadjump:
+		scr_enemy_pizzaheadjump();
+		break;
+	case states.punch:
+		if (sprite_index == spr_minijohn_punchstart)
+		{
+			image_speed = 0.35;
+			hsp = Approach(hsp, 0, 1);
+			if (ANIMATION_END)
+			{
+				fmod_event_one_shot_3d("event:/sfx/enemies/minijohnpunch", x, y);
+				punchspd = 8;
+				hsp = punchspd * image_xscale;
+				sprite_index = spr_minijohn_punch;
+				image_index = 0;
+				image_speed = 0.25;
+				with (instance_create(x, y, obj_forkhitbox))
+				{
+					sprite_index = spr_bighitbox;
+					mask_index = spr_bighitbox;
+					ID = other.id;
+				}
+			}
+		}
+		else if (sprite_index == spr_minijohn_punch)
+		{
+			image_speed = 0.25;
+			punchspd = Approach(punchspd, 0, 0.25);
+			hsp = punchspd * image_xscale;
+			with (instance_place(x + hsp, y, obj_destructibles))
+			{
+				instance_destroy();
+			}
+			if (ANIMATION_END)
+			{
+				state = states.chase;
+				ragecooldown = 100;
+				sprite_index = spr_minijohn_charge;
+			}
+		}
+		break;
+	case states.underground:
+		hsp = 0;
+		if (underground)
+		{
+			if (vsp < 0)
+			{
+				vsp = 0;
+			}
+			sprite_index = spr_minijohn_ground;
+			image_index = 0;
+			if (player.x > (x - 200) && player.x < (x + 200) && y <= (player.y + 60) && y >= (player.y - 60))
+			{
+				underground = false;
+				if (player.x != x)
+				{
+					image_xscale = sign(x - player.x);
+				}
+				fmod_event_one_shot_3d("event:/sfx/enemies/comingoutground", x, y);
+			}
+		}
+		else if (sprite_index == spr_minijohn_ground)
+		{
+			if (vsp < 0)
+			{
+				vsp = 0;
+			}
+			if (ANIMATION_END)
+			{
+				sprite_index = spr_minijohn_stun;
+				vsp = -4;
+				repeat (3)
+				{
+					create_debris(x, y, spr_graveyarddebris2);
+				}
+			}
+		}
+		else if (grounded)
+		{
+			state = states.chase;
+			sprite_index = spr_minijohn_charge;
+		}
+		break;
+}
+if (state == states.stun && stunned > 100 && !birdcreated)
+{
+	birdcreated = true;
+	with (instance_create(x, y, obj_enemybird))
+	{
+		ID = other.id;
+	}
+}
+if (state == states.chase && ragecooldown <= 0)
+{
+	if (player.x > (x - 400) && player.x < (x + 400) && y <= (player.y + 60) && y >= (player.y - 60))
+	{
+		if (x != player.x)
+		{
+			image_xscale = sign(player.x - x);
+		}
+		sprite_index = spr_minijohn_punchstart;
+		image_index = 0;
+		ragecooldown = 100;
+		state = states.punch;
+	}
+}
+if (ragecooldown > 0)
+{
+	ragecooldown--;
+}
+if (state != states.stun)
+{
+	birdcreated = false;
+}
+if (flash && alarm[2] <= 0)
+{
+	alarm[2] = 0.15 * game_get_speed(gamespeed_fps);
+}
+if (state != states.chase)
+{
+	momentum = 0;
+}
+if (state == states.walk || state == states.idle)
+{
+	var targetplayer = obj_player;
+	movespeed = 4;
+	if (targetplayer.x != x)
+	{
+		image_xscale = -sign(x - targetplayer.x);
+	}
+	state = states.chase;
+}
+if (state != states.grabbed)
+{
+	depth = 0;
+}
+if (state != states.stun)
+{
+	thrown = false;
+}
+if (!boundbox)
+{
+	with (instance_create(x, y, obj_baddiecollisionbox))
+	{
+		sprite_index = other.sprite_index;
+		mask_index = other.sprite_index;
+		baddieID = other.id;
+		other.boundbox = true;
+	}
+}
+if (state == states.underground)
+{
+	invincible = true;
+	if (sprite_index != spr_minijohn_underground && sprite_index != spr_minijohn_undergroundout)
+	{
+		image_blend = c_gray;
+	}
+}
+else
+{
+	invincible = false;
+	image_blend = c_white;
+}

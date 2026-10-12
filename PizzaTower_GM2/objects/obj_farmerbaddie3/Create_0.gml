@@ -1,0 +1,11 @@
+event_inherited();
+idle = true;
+disx = 150;
+idlespr = spr_peasanto_throwstart;
+stunfallspr = spr_peasanto_stun;
+walkspr = spr_peasanto_walk;
+grabbedspr = spr_peasanto_stun;
+scaredspr = spr_peasanto_scared;
+ragespr = spr_peasanto_flameattack;
+spr_dead = spr_peasanto_dead;
+sprite_index = walkspr;

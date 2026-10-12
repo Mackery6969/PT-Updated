@@ -1,0 +1,23 @@
+name: GML Code Scanner
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "30 4 * * 1"
+
+permissions:
+  contents: read
+  security-events: write
+  pull-requests: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: Mackery6969/GML-Code-Scanner@v1
+        with:
+           config: .gmlscan.json
+           path: ./PizzaTower_GM2
+           fail-on: none

@@ -1,0 +1,42 @@
+pause = false;
+var rm = room;
+if (!hub)
+{
+	obj_player.targetRoom = Realtitlescreen;
+	room = Realtitlescreen;
+	with (obj_player)
+	{
+		scr_characterspr();
+	}
+	global.leveltosave = noone;
+	global.leveltorestart = noone;
+	scr_playerreset();
+	alarm[0] = 2;
+	obj_player.state = states.titlescreen;
+	obj_player.targetDoor = "A";
+}
+else
+{
+	global.levelreset = false;
+	scr_playerreset();
+	with (obj_player)
+	{
+		swap_player();
+	}
+	global.levelreset = true;
+	obj_player.targetDoor = "HUB";
+global.leveltorestart = noone;
+	global.leveltosave = noone;
+	with (instance_create(0, 0, obj_backtohub_fadeout))
+	{
+		fadealpha = 1;
+		fadein = false;
+		reset = true;
+		obj_player.targetRoom = obj_player.backtohubroom;
+		room_goto(obj_player.backtohubroom);
+	}
+}
+if (rm == boss_pizzaface || rm == boss_noise || rm == boss_pepperman || rm == boss_fakepep || rm == boss_vigilante)
+{
+	global.bossintro = true;
+}

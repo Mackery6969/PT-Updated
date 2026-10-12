@@ -1,0 +1,47 @@
+if (do_rank)
+{
+	with (instance_create(room_width / 2, room_height / 2, obj_rank))
+	{
+		toppinvisible = other.toppinvisible;
+		if (!toppinvisible && global.leveltosave != "exit" && global.leveltosave != "secretworld")
+		{
+			if (!global.swapmode)
+			{
+				array_delete(text, 0, 1);
+			}
+			else
+			{
+				array_delete(text, 0, 3);
+			}
+			array_pop(text);
+		}
+		depth = other.depth - 1;
+		ini_open_from_string(obj_savesystem.ini_str);
+		for (var i = 0; i < array_length(toppin); i++)
+		{
+			if (global.newtoppin[i])
+			{
+				toppin[i] = 1;
+			}
+			else if (ini_read_real("Toppin", global.leveltosave + string(i + 1), false))
+			{
+				toppin[i] = 2;
+			}
+			else
+			{
+				toppin[i] = 0;
+			}
+		}
+		ini_close();
+	}
+}
+else
+{
+	instance_create(0, 0, obj_endgamefade);
+	alarm[1] = 120;
+}
+if (!do_rank)
+{
+	exit;
+}
+obj_player.visible = false;

@@ -1,0 +1,364 @@
+enum pizzafacep3_attacks
+{
+	jump = 0,
+	swinging = 1,
+	punch = 2,
+	stomp = 3,
+	laugh = 4,
+}
+
+function scr_pizzaface_p3_init_attack(_hits)
+{
+	attack_list[_hits] = array_create(0);
+}
+
+function scr_pizzaface_p3_add_attack(_hits, _attack, _cooldown)
+{
+	array_push(attack_list[_hits], [_attack, _cooldown]);
+}
+
+function scr_pizzaface_p3_init_sounds()
+{
+	snd_jump = fmod_event_create_instance("event:/sfx/pizzahead/jump");
+	snd_bigpunch = fmod_event_create_instance("event:/sfx/pizzahead/bigpunch");
+	snd_swinging = fmod_event_create_instance("event:/sfx/pizzahead/swinging");
+}
+
+function scr_pizzaface_p3_destroy_sounds()
+{
+	destroy_sounds([snd_jump, snd_bigpunch, snd_swinging]);
+}
+
+function scr_pizzaface_p3_update_sounds()
+{
+	fmod_event_instance_set_3d_attributes(snd_jump, x, y);
+	fmod_event_instance_set_3d_attributes(snd_bigpunch, x, y);
+	if (sprite_index == spr_pizzahead_swinging)
+	{
+		if (!fmod_event_instance_is_playing(snd_swinging))
+		{
+			fmod_event_instance_play(snd_swinging);
+		}
+		fmod_event_instance_set_3d_attributes(snd_swinging, x, y);
+	}
+	else
+	{
+		fmod_event_instance_stop(snd_swinging, true);
+	}
+}
+
+function scr_pizzaface_p3_fall()
+{
+	if (grounded && vsp > 0)
+	{
+		state = states.walk;
+	}
+}
+
+function scr_pizzaface_p3_walk()
+{
+	if (flickertime <= 0 && grounded && vsp > 0)
+	{
+		image_speed = 0.35;
+		if (laugh <= 0)
+		{
+			var wspeed = walkspeed;
+			if (vulnerable_buffer > 0)
+			{
+				wspeed = floor(maxwalkspeed / 2.5);
+			}
+			move = sign(targetplayer.x - x);
+			if (move != 0)
+			{
+				image_xscale = move;
+			}
+			walkspeed = Approach(walkspeed, maxwalkspeed, walkaccel);
+			if (abs(x - targetplayer.x) < walkdisx1)
+			{
+				sprite_index = spr_pizzahead_phase3walkback;
+				hsp = -move * wspeed;
+				if (move != 0 && move != -dir)
+				{
+					walkspeed = floor(maxwalkspeed / 2);
+				}
+			}
+			else if (abs(x - targetplayer.x) > walkdisx2)
+			{
+				sprite_index = spr_pizzahead_phase3walk;
+				hsp = move * wspeed;
+				if (move != 0 && move != dir)
+				{
+					walkspeed = floor(maxwalkspeed / 2);
+				}
+			}
+			else
+			{
+				if (sprite_index != spr_pizzahead_phase3walk && sprite_index != spr_pizzahead_phase3walkback)
+				{
+					sprite_index = spr_pizzahead_phase3walk;
+				}
+				hsp = 0;
+				walkspeed = 0;
+			}
+		}
+		else
+		{
+			hsp = Approach(hsp, 0, 0.5);
+			laugh--;
+			move = sign(targetplayer.x - x);
+			if (move != 0)
+			{
+				image_xscale = move;
+			}
+			if (sprite_index != spr_pizzahead_intro4)
+			{
+				sprite_index = spr_pizzahead_intro4;
+				image_index = 52;
+			}
+			else if (ANIMATION_END)
+			{
+				image_index = image_number - 1;
+			}
+		}
+		if (cooldown > 0)
+		{
+			cooldown--;
+		}
+		else
+		{
+			var arr = attack_list[wastedhits][currentattack];
+			var attack = arr[0];
+			var cd = arr[1];
+			cooldown = cd;
+			currentattack++;
+			if (currentattack >= array_length(attack_list[wastedhits]))
+			{
+				currentattack = 0;
+			}
+			switch (attack)
+			{
+				case pizzafacep3_attacks.laugh:
+					laugh = cooldown;
+					fmod_event_one_shot("event:/sfx/voice/pizzahead");
+					vulnerable_buffer = laugh;
+					break;
+				case pizzafacep3_attacks.jump:
+					laugh = 0;
+					vulnerable_buffer = 0;
+					state = states.jump;
+					fmod_event_instance_play(snd_jump);
+					sprite_index = spr_pizzahead_phase3jumpstart;
+					image_index = 0;
+					image_speed = 0.35;
+					hsp = image_xscale * (6 + wastedhits);
+					walkspeed = abs(hsp);
+					vsp = -(14 - floor(wastedhits * 0.5));
+					break;
+				case pizzafacep3_attacks.swinging:
+					state = states.swinging;
+					fmod_event_one_shot_3d("event:/sfx/pizzahead/swingstart", x, y);
+					sprite_index = spr_pizzahead_swingingstart;
+					image_index = 0;
+					attackspeed = 0;
+					break;
+				case pizzafacep3_attacks.punch:
+					state = states.punch;
+					fmod_event_one_shot_3d("event:/sfx/pizzahead/bigpunchstart", x, y);
+					sprite_index = spr_pizzahead_bigpunch;
+					image_index = 0;
+					instance_destroy(hitboxID);
+					hitboxID = noone;
+					break;
+				case pizzafacep3_attacks.stomp:
+					state = states.stomp;
+					fmod_event_one_shot_3d("event:/sfx/pizzahead/giantstomp", x, y);
+					sprite_index = spr_pizzahead_stomp;
+					image_index = 0;
+					shot = false;
+					break;
+			}
+		}
+	}
+	else
+	{
+		vulnerable_buffer = 0;
+		sprite_index = spr_pizzahead_phase3flicker;
+		if (grounded)
+		{
+			hsp = Approach(hsp, 0, 0.25);
+		}
+		if (grounded && vsp > 0 && flickertime > 0)
+		{
+			hsp = Approach(hsp, 0, 0.5);
+			create_particle(x, y + 33, particletypes.landcloud);
+			vsp = -5;
+			touchedground = true;
+		}
+	}
+}
+
+function scr_pizzaface_p3_jump()
+{
+	with (obj_player)
+	{
+		if (place_meeting(x, y, other))
+		{
+			with (other)
+			{
+				scr_hurtplayer(other);
+			}
+		}
+	}
+	hsp = walkspeed * image_xscale;
+	if (place_meeting(x + sign(hsp), y, obj_solid))
+	{
+		image_xscale *= -1;
+	}
+	if (sprite_index == spr_pizzahead_phase3jumpstart && ANIMATION_END)
+	{
+		sprite_index = spr_pizzahead_phase3jump;
+		image_speed = 0.1;
+	}
+	if (sprite_index == spr_pizzahead_phase3jump)
+	{
+		if (ANIMATION_END)
+		{
+			image_index = image_number - 1;
+		}
+		image_speed = abs(vsp) / 20;
+	}
+	if (sprite_index == spr_pizzahead_phase3jumpland && ANIMATION_END)
+	{
+		walkspeed = maxwalkspeed;
+		state = states.walk;
+		image_xscale *= -1;
+		sprite_index = spr_pizzahead_phase3walk;
+	}
+	if (grounded && vsp > 0 && sprite_index != spr_pizzahead_phase3jumpland && state != states.walk)
+	{
+		sprite_index = spr_pizzahead_phase3jumpland;
+		image_index = 0;
+		image_speed = 0.35;
+	}
+}
+
+function scr_pizzaface_p3_stomp()
+{
+	hsp = 0;
+	if (floor(image_index) >= 20 && !shot)
+	{
+		shot = true;
+		fmod_event_one_shot_3d("event:/sfx/pep/groundpound", x, y);
+		create_particle(x + (119 * image_xscale), y + 35, particletypes.groundpoundeffect);
+		with (obj_camera)
+		{
+			shake_mag = 6;
+			shake_mag_acc = 5 / game_get_speed(gamespeed_fps);
+		}
+		with (obj_player)
+		{
+			if (place_meeting(x, y, other))
+			{
+				with (other)
+				{
+					scr_hurtplayer(other);
+				}
+			}
+			else if (grounded && vsp > 0)
+			{
+				state = states.slipbanan;
+				vsp = -17;
+				movespeed = 0;
+				xscale = -other.image_xscale;
+				sprite_index = spr_rockethitwall;
+				image_index = 0;
+				state = states.slipbanan;
+				instance_create(x, y + 43, obj_bangeffect);
+			}
+		}
+	}
+	if (ANIMATION_END)
+	{
+		state = states.walk;
+	}
+}
+
+function scr_pizzaface_p3_punch()
+{
+	hsp = Approach(hsp, 0, 0.25);
+	if (floor(image_index) == 15)
+	{
+		hsp = image_xscale * 5;
+	}
+	if (floor(image_index) >= 17 && floor(image_index) < 38 && hitboxID == noone)
+	{
+		fmod_event_instance_play(snd_bigpunch);
+		with (instance_create(x, y, obj_forkhitbox))
+		{
+			sprite_index = spr_pizzahead_bigpunch;
+			image_xscale = other.image_xscale;
+			ID = other.id;
+			other.hitboxID = id;
+		}
+	}
+	if (floor(image_index) >= 38)
+	{
+		instance_destroy(hitboxID);
+	}
+	if (ANIMATION_END)
+	{
+		state = states.walk;
+	}
+}
+
+function scr_pizzaface_p3_swinging()
+{
+	if (sprite_index == spr_pizzahead_swingingstart)
+	{
+		hsp = 0;
+		if (ANIMATION_END)
+		{
+			hitboxID = instance_create(x, y, obj_forkhitbox);
+			hitboxID.ID = id;
+			hitboxID.sprite_index = spr_pizzahead_swinging;
+			sprite_index = spr_pizzahead_swinging;
+		}
+	}
+	else
+	{
+		hsp = image_xscale * attackspeed;
+		if (attackspeed < 10)
+		{
+			attackspeed += 0.5;
+		}
+		if (place_meeting(x + hsp, y, obj_solid))
+		{
+			state = states.walk;
+		}
+	}
+}
+
+function scr_pizzaface_p3_staggered()
+{
+	hsp = Approach(hsp, 0, 0.1);
+	if (cooldown > 0)
+	{
+		cooldown--;
+	}
+	if (abs(hsp) == 0)
+	{
+		state = states.walk;
+	}
+}
+
+function scr_pizzaface_p3_finale()
+{
+	hsp = 0;
+	vsp = 0;
+	x = -200;
+	y = -200;
+	obj_player.x = -200;
+	obj_player.y = -200;
+	obj_player.hsp = 0;
+	obj_player.vsp = 0;
+}

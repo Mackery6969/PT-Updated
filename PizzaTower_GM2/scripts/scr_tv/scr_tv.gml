@@ -1,0 +1,247 @@
+function tv_set_idle()
+{
+	with (obj_tv)
+	{
+		state = states.normal;
+		sprite_index = spr_tv_idle;
+	}
+}
+
+function tv_get_palette()
+{
+	if (!instance_exists(obj_player))
+	{
+		exit;
+	}
+	var _info = obj_player.ispeppino ? get_pep_palette_info() : get_noise_palette_info();
+	spr_palette = _info.spr_palette;
+	if (obj_player.isgustavo && obj_player.ispeppino)
+	{
+		spr_palette = spr_ratmountpalette;
+	}
+	paletteselect = _info.paletteselect;
+	patterntexture = _info.patterntexture;
+}
+
+function tv_do_expression(_spr, _make_peppino = false)
+{
+	with (obj_tv)
+	{
+		if (expressionsprite != _spr)
+		{
+			state = states.whitenoise;
+			expressionsprite = _spr;
+			switch (expressionsprite)
+			{
+				case spr_tv_exprhurt:
+				case spr_tv_exprhurtN:
+				case spr_tv_hurtG:
+					expressionbuffer = 60;
+					break;
+				case spr_tv_exprhurt1:
+				case spr_tv_exprhurt2:
+				case spr_tv_exprhurt3:
+				case spr_tv_exprhurt4:
+				case spr_tv_exprhurt5:
+				case spr_tv_exprhurt6:
+				case spr_tv_exprhurt7:
+				case spr_tv_exprhurt8:
+				case spr_tv_exprhurt9:
+				case spr_tv_exprhurt10:
+				case spr_tv_exprhurtN1:
+				case spr_tv_exprhurtN2:
+				case spr_tv_exprhurtN3:
+				case spr_tv_exprhurtN4:
+				case spr_tv_exprhurtN5:
+				case spr_tv_exprhurtN6:
+				case spr_tv_exprhurtN7:
+				case spr_tv_exprhurtN8:
+				case spr_tv_exprhurtN9:
+				case spr_tv_exprhurtN10:
+					expressionbuffer = 100;
+					break;
+				case spr_tv_exprcollect:
+					expressionbuffer = 150;
+					if (obj_player.isgustavo)
+					{
+						expressionsprite = spr_tv_happyG;
+						if (irandom(100) <= 50)
+						{
+							fmod_event_one_shot_3d("event:/sfx/voice/brickok", obj_player.x, obj_player.y);
+						}
+					}
+					if (irandom(100) <= 50)
+					{
+						scr_fmod_soundeffect(obj_player.snd_voiceok, obj_player.x, obj_player.y);
+					}
+					break;
+			}
+			if (!_make_peppino && instance_exists(obj_player) && !obj_player.ispeppino)
+			{
+				var n = asset_get_index(sprite_get_name(_spr) + "N");
+				if (n > -1)
+				{
+					expressionsprite = n;
+				}
+			}
+		}
+	}
+}
+
+function scr_tv_get_transfo_sprite()
+{
+	var _state = obj_player.state;
+	if (_state == states.backbreaker || _state == states.chainsaw)
+	{
+		_state = obj_player.tauntstoredstate;
+	}
+	var _spr = noone;
+	if (instance_exists(obj_bucketfollower))
+	{
+		_spr = spr_tv_bucket;
+	}
+	switch (_state)
+	{
+		case states.knightpep:
+		case states.knightpepattack:
+		case states.knightpepbump:
+		case states.knightpepslopes:
+			_spr = spr_tv_knight;
+			break;
+		case states.bombpep:
+		case states.bombgrab:
+			_spr = spr_tv_bombpep;
+			break;
+		case states.fireass:
+			_spr = spr_tv_fireass;
+			if (obj_player.sprite_index == obj_player.spr_scaredjump1 || obj_player.sprite_index == obj_player.spr_scaredjump2)
+			{
+				_spr = spr_tv_scaredjump;
+			}
+			break;
+		case states.tumble:
+			if (obj_player.sprite_index == obj_player.spr_tumble || obj_player.sprite_index == obj_player.spr_tumblestart || obj_player.sprite_index == obj_player.spr_tumbleend)
+			{
+				_spr = spr_tv_tumble;
+			}
+			else if (obj_player.shotgunAnim)
+			{
+				_spr = spr_tv_shotgun;
+			}
+			break;
+		case states.firemouth:
+			_spr = spr_tv_firemouth;
+			break;
+		case states.ghost:
+		case states.ghostpossess:
+			_spr = spr_tv_ghost;
+			break;
+		case states.stunned:
+			if (obj_player.sprite_index == obj_player.spr_squished)
+			{
+				_spr = spr_tv_squished;
+			}
+			break;
+		case states.normal:
+		case states.jump:
+		case states.handstandjump:
+		case states.crouch:
+		case states.ladder:
+		case states.mach3:
+		case states.machslide:
+		case states.bump:
+			with (obj_player)
+			{
+				if (shotgunAnim)
+				{
+					_spr = spr_tv_shotgun;
+				}
+				else if (global.mort)
+				{
+					_spr = spr_tv_mort;
+				}
+			}
+			break;
+		case states.freefallprep:
+		case states.freefall:
+		case states.freefallland:
+			if (obj_player.shotgunAnim)
+			{
+				_spr = spr_tv_shotgun;
+			}
+			break;
+		case states.pistol:
+			if (global.mort)
+			{
+				_spr = spr_tv_mort;
+			}
+			break;
+		case states.shotgun:
+		case states.shotgunshoot:
+		case states.shotgunfreefall:
+		case states.shotgunjump:
+		case states.shotgundash:
+		case states.shotguncrouch:
+		case states.shotguncrouchjump:
+			_spr = spr_tv_shotgun;
+			break;
+		case states.barrel:
+		case states.barreljump:
+		case states.barrelslide:
+		case states.barrelclimbwall:
+			_spr = spr_tv_barrel;
+			break;
+		case states.golf:
+			_spr = spr_tv_golf;
+			break;
+		case states.rocket:
+		case states.rocketslide:
+			_spr = spr_tv_rocket;
+			break;
+		case states.cheeseball:
+			_spr = spr_tv_cheeseball;
+			break;
+		case states.cheesepep:
+		case states.cheesepepjump:
+		case states.cheesepepstick:
+		case states.cheesepepstickside:
+		case states.cheesepepstickup:
+			_spr = spr_tv_cheesepep;
+			break;
+		case states.boxxedpep:
+		case states.boxxedpepjump:
+		case states.boxxedpepspin:
+			_spr = spr_tv_boxxedpep;
+			break;
+		case states.rideweenie:
+			_spr = spr_tv_weenie;
+			break;
+		case states.mort:
+		case states.mortattack:
+		case states.morthook:
+		case states.mortjump:
+			_spr = spr_tv_mort;
+			break;
+		case states.mach2:
+		case states.climbwall:
+		case states.machroll:
+		case states.grind:
+			if (obj_player.skateboarding)
+			{
+				_spr = spr_tv_clown;
+			}
+			else if (obj_player.shotgunAnim)
+			{
+				_spr = spr_tv_shotgun;
+			}
+			break;
+	}
+	with (obj_player)
+	{
+		if (state == states.actor && sprite_index == spr_tumble)
+		{
+			_spr = spr_tv_tumble;
+		}
+	}
+	return _spr;
+}

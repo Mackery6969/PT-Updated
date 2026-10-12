@@ -1,0 +1,29 @@
+if (cooldown <= 0 && (escape == false || global.panic))
+{
+	fmod_event_one_shot_3d("event:/sfx/enemies/cannongoblin", x, y);
+	with (instance_create(x + (image_xscale * 15), y, obj_canongoblinbomb))
+	{
+		other.ID = id;
+		image_xscale = other.image_xscale;
+	}
+	repeat (5)
+	{
+		with (instance_create(x + (image_xscale * 35), y, obj_firemouthflame))
+		{
+			image_speed = 0.35;
+			sprite_index = spr_cloudeffect;
+			depth = other.depth - 1;
+		}
+	}
+	cooldown = cooldownmax;
+	sprite_index = spr_canonbot_shoot;
+	image_index = 0;
+}
+if (cooldown > 0)
+{
+	cooldown--;
+}
+if (ANIMATION_END && sprite_index == spr_canonbot_shoot)
+{
+	sprite_index = spr_canonbot;
+}

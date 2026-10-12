@@ -1,0 +1,26 @@
+var rm = roomtorestart;
+scr_pause_stop_sounds();
+global.levelattempts++;
+ds_list_clear(global.saveroom);
+ds_list_clear(global.baddieroom);
+ds_list_clear(global.debris_list);
+ds_list_clear(global.collect_list);
+alarm[4] = 1;
+obj_music.music = noone;
+instance_destroy(obj_fadeout);
+global.levelreset = false;
+scr_playerreset();
+global.levelreset = true;
+obj_player.targetRoom = rm;
+room_goto(rm);
+var _d = "A";
+if (rm == boss_pizzaface)
+{
+	_d = "B";
+}
+obj_player.targetDoor = _d;
+obj_player.restartbuffer = 15;
+if (rm == boss_pizzaface || rm == boss_noise || rm == boss_pepperman || rm == boss_fakepep || rm == boss_vigilante)
+{
+	global.bossintro = true;
+}

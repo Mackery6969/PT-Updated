@@ -1,0 +1,22 @@
+function scr_bombshoot()
+{
+	if (pistolcooldown <= 0 && state != states.bombthrow && state != states.punch && instance_number(obj_playerbomb) < 2)
+	{
+		movespeed = -movespeed;
+		input_buffer_shoot = 0;
+		image_index = 0;
+		sprite_index = spr_playerN_noisebombkick;
+		fmod_event_one_shot_3d("event:/sfx/playerN/bombthrow", x, y);
+		state = states.bombthrow;
+		pistolcooldown = 50;
+		machslideAnim = false;
+		landAnim = false;
+		jumpAnim = false;
+		crouchAnim = false;
+		stompAnim = false;
+		windingAnim = 0;
+		bombthrow = false;
+		jumpstop = true;
+	}
+}
+

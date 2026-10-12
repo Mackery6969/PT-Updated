@@ -1,0 +1,41 @@
+scr_initenemy();
+usepalette = true;
+gusrat = false;
+grav = 0.5;
+hsp = 0;
+vsp = 0;
+state = states.walk;
+stunned = 0;
+alarm[0] = 150;
+shot = false;
+reset = false;
+flash = false;
+var _hurt = obj_player.spr_hurt;
+var _dead = obj_player.spr_dead;
+if (obj_player.isgustavo)
+{
+	_hurt = spr_player_ratmounthurt;
+	_dead = spr_player_ratmountgameover;
+}
+idlespr = _hurt;
+stunfallspr = _hurt;
+walkspr = _hurt;
+grabbedspr = _hurt;
+scaredspr = _hurt;
+ragespr = _hurt;
+image_xscale = -1;
+hp = 1;
+grounded = true;
+birdcreated = false;
+boundbox = false;
+spr_dead = _dead;
+important = true;
+heavy = false;
+depth = 0;
+paletteselect = 0;
+spr_palette = palette_cheeseslime;
+sprite_index = spr_slimemove;
+grabbedby = 0;
+stuntouchbuffer = 0;
+scaredbuffer = 0;
+snotty = false;

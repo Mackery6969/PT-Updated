@@ -1,0 +1,12 @@
+fadealpha = 0;
+roomreset = false;
+index = 0;
+_id = 0;
+restarttimer = false;
+gamestart = false;
+xx = 0;
+yy = 0;
+fadein = false;
+finalhallway = false;
+group_arr = noone;
+offload_arr = noone;

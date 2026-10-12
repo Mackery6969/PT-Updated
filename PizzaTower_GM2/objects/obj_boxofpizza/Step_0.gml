@@ -1,0 +1,78 @@
+if (global.horse)
+{
+	exit;
+}
+with (obj_player)
+{
+	if (other.image_yscale == 1)
+	{
+		if (((key_down && !place_meeting(x, y + 1, obj_destructibles) && place_meeting(x, y + 1, other) && ((state == states.crouch) || state == states.machroll || (state == states.tumble && sprite_index == spr_dive))) || ((state == states.crouchslide || (state == states.tumble && key_down) || state == states.machcancel || state == states.freefall || state == states.freefallland) && !place_meeting(x, y + 1, obj_destructibles) && place_meeting(x, y + 1, other))) && !instance_exists(obj_fadeout) && state != states.door && state != states.comingoutdoor)
+		{
+			obj_player.lastroom = room;
+			other.depth = -10;
+			fmod_event_one_shot_3d("event:/sfx/pep/box", x, y);
+			obj_player.box = true;
+			mach2 = 0;
+			obj_camera.chargecamera = 0;
+			x = other.x;
+			obj_player.targetDoor = other.targetDoor;
+			obj_player.targetRoom = other.targetRoom;
+				sprite_index = spr_downpizzabox;
+				image_index = 0;
+				state = states.door;
+			
+
+		}
+	}
+	if (other.image_yscale == -1)
+	{
+		if (((key_up && !place_meeting(x, y - 1, obj_destructibles) && place_meeting(x, y - 10, other) && (state == states.normal || state == states.machcancel || state == states.machcancel || state == states.jump || state == states.mach1 || state == states.mach2 || state == states.mach3 || state == states.Sjumpprep || (state == states.punch && sprite_index == spr_breakdanceuppercut))) || ((state == states.Sjump || state == states.machcancel || state == states.Sjumpland) && !place_meeting(x, y - 1, obj_destructibles) && place_meeting(x, y - 1, other))) && !instance_exists(obj_fadeout) && state != states.door && state != states.comingoutdoor)
+		{
+			obj_player.lastroom = room;
+			fmod_event_one_shot_3d("event:/sfx/pep/box", x, y);
+			other.depth = -10;
+			obj_player.box = true;
+			other.depth = -8;
+			mach2 = 0;
+			obj_camera.chargecamera = 0;
+			x = other.x;
+			y = other.y + 24;
+			obj_player.targetDoor = other.targetDoor;
+			obj_player.targetRoom = other.targetRoom;
+			obj_player.vsp = 0;
+				sprite_index = spr_uppizzabox;
+				image_index = 0;
+				state = states.door;
+			
+
+		}
+	}
+}
+if (place_meeting(x, y + 1, obj_doorA) || place_meeting(x, y - 1, obj_doorA))
+{
+	targetDoor = "A";
+}
+if (place_meeting(x, y + 1, obj_doorB) || place_meeting(x, y - 1, obj_doorB))
+{
+	targetDoor = "B";
+}
+if (place_meeting(x, y + 1, obj_doorC) || place_meeting(x, y - 1, obj_doorC))
+{
+	targetDoor = "C";
+}
+if (place_meeting(x, y + 1, obj_doorD) || place_meeting(x, y - 1, obj_doorD))
+{
+	targetDoor = "D";
+}
+if (place_meeting(x, y + 1, obj_doorE) || place_meeting(x, y - 1, obj_doorE))
+{
+	targetDoor = "E";
+}
+if (place_meeting(x, y + 1, obj_doorF) || place_meeting(x, y - 1, obj_doorF))
+{
+	targetDoor = "F";
+}
+if (place_meeting(x, y + 1, obj_doorG) || place_meeting(x, y - 1, obj_doorG))
+{
+	targetDoor = "G";
+}

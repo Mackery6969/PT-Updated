@@ -1,0 +1,16 @@
+crosshair_x = x;
+crosshair_y = y;
+turn = 1;
+state = states.normal;
+image_speed = 0.35;
+depth = -8;
+captain_x = 160;
+captain_y = SCREEN_HEIGHT + sprite_get_height(spr_captaingoblin_canon);
+canon_y = SCREEN_HEIGHT + sprite_get_height(spr_captaingoblin_canon);
+captain_index = 0;
+captain_sprite = spr_captaingoblin;
+canon_sprite = spr_captaingoblin_canon;
+canon_index = 0;
+destroyed = false;
+captain_y = SCREEN_HEIGHT;
+canon_y = SCREEN_HEIGHT;

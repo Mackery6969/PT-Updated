@@ -1,0 +1,39 @@
+grabbed = false;
+state = states.normal;
+flash = true;
+unpickable = false;
+hp = 0;
+grounded = true;
+state = 0;
+playerid = obj_player;
+platformid = noone;
+hsp_carry = 0;
+vsp_carry = 0;
+thrown = false;
+use_collision = true;
+pizzahead = false;
+override_throw = false;
+spd = 6;
+vsp = 0;
+grav = 0.5;
+hasgrabbed = false;
+image_speed = 0.35;
+bounce = 3;
+land = false;
+move = true;
+depth = -10;
+mask_index = sprite_index;
+alarm[1] = 10;
+idlespr = spr_pizzahead_TVprojectile;
+bouncespr = spr_pizzahead_TVprojectilebounce;
+var palinfo = get_pep_palette_info();
+if (!obj_player.ispeppino)
+{
+	palinfo = get_noise_palette_info();
+	sprite_index = spr_pizzahead_TVprojectileN;
+	idlespr = spr_pizzahead_TVprojectileN;
+	bouncespr = spr_pizzahead_TVprojectilebounceN;
+}
+spr_palette = palinfo.spr_palette;
+paletteselect = palinfo.paletteselect;
+patterntexture = palinfo.patterntexture;

@@ -1,0 +1,11 @@
+event_inherited();
+attackmaxspeed = 6;
+idle = true;
+disx = 150;
+idlespr = spr_farmer2_throwstart;
+stunfallspr = spr_farmer2_stun;
+walkspr = spr_farmer2_walk;
+grabbedspr = spr_farmer2_idle;
+scaredspr = spr_farmer2_scared;
+ragespr = spr_farmer2_attack;
+spr_dead = spr_farmer2_dead;

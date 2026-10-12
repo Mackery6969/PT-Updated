@@ -1,0 +1,37 @@
+if (place_meeting(x, y - 1, obj_player))
+{
+	with (obj_player)
+	{
+		if (place_meeting(x, y + 1, obj_ladder) && !place_meeting(other.x + 16, y + 1, obj_solid) && key_down && ladderbuffer <= 0 && state == states.crouch && place_meeting(x, y + 1, obj_platform))
+		{
+			y += 5;
+			state = states.ladder;
+			x = other.x + 16;
+			y = floor(y);
+			if ((y % 2) == 1)
+			{
+				y -= 1;
+			}
+		}
+		if (key_down && place_meeting(x, y + 1, obj_ladder) && !place_meeting(other.x + 16, y + 1, obj_solid) && state == states.ratmountcrouch && place_meeting(x, y + 1, obj_platform))
+		{
+			state = states.ratmountladder;
+			if (brick)
+			{
+				with (instance_create(x, y, obj_brickcomeback))
+				{
+					wait = true;
+					instance_create(x, y, obj_genericpoofeffect);
+				}
+			}
+			y += 5;
+			brick = false;
+			x = other.x + 16;
+			y = floor(y);
+			if ((y % 2) == 1)
+			{
+				y -= 1;
+			}
+		}
+	}
+}

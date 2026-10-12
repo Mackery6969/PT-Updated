@@ -1,0 +1,43 @@
+depth = 0;
+target = noone;
+state = 0;
+targetx = x;
+targety = y;
+distance = 220;
+movespeed = 25;
+deccel = 2;
+accel = 3;
+snd = fmod_event_create_instance("event:/sfx/mort/throwloop");
+var objs = [obj_ratblock, obj_morthook, obj_electricpotato, obj_baddie];
+var closestID = noone;
+var closestdis = room_width * room_height;
+for (var i = 0; i < array_length(objs); i++)
+{
+	with (objs[i])
+	{
+		var dis = distance_to_object(other);
+		if (sign(x - obj_player.x) == obj_player.xscale && (object_index != obj_morthook || projectilebuffer <= 0) && dis <= closestdis && bbox_in_camera(view_camera[0], 16))
+		{
+			closestID = id;
+			closestdis = dis;
+		}
+	}
+}
+if (closestID != noone)
+{
+	target = closestID;
+}
+if (target == noone)
+{
+	targetx = x + (distance * obj_player.xscale);
+	image_xscale = obj_player.xscale;
+}
+else
+{
+	targetx = closestID.x;
+	targety = closestID.y;
+	if (targetx != obj_player.x)
+	{
+		obj_player.xscale = sign(targetx - obj_player.x);
+	}
+}

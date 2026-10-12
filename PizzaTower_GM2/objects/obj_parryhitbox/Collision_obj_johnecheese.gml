@@ -1,0 +1,13 @@
+if (!collisioned)
+{
+	if (obj_player.x != other.x)
+	{
+		obj_player.xscale = sign(other.x - obj_player.x);
+	}
+	else
+	{
+		obj_player.xscale = -other.image_xscale;
+	}
+	instance_destroy(other);
+	event_user(0);
+}
