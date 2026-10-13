@@ -8,5 +8,5 @@
   "ignore": ["extensions/**", "scripts/vendor_*/**"],
   "threatModels": ["remote", "local"],
   "globalPrefixes": ["g_"],
-  "runtime": "2023.1.1.62"
+  "runtime": "2026.0.0.23"
 }
