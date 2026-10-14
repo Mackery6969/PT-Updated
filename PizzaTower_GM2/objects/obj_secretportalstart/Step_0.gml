@@ -42,7 +42,7 @@ switch (sprite_index)
 					image_index = 0;
 					state = states.freefallprep;
 					freefallsmash = 0;
-					vsp = -5;
+					vsp = ispeppino ? -5 : -7;
 				}
 				else if (isgustavo)
 				{
@@ -99,7 +99,7 @@ switch (sprite_index)
 								image_index = 0;
 								state = states.freefallprep;
 								freefallsmash = 0;
-								vsp = -5;
+								vsp = ispeppino ? -5 : -7;
 							}
 							if (state == states.knightpep)
 							{
