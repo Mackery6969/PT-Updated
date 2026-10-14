@@ -94,7 +94,10 @@ function scr_pause_activate_objects(_unpause_sounds = true)
 	ds_list_clear(sound_list);
 	fadein = false;
 	pause = false;
-	alarm[2] = 1;
+	if (object_index == obj_pause)
+	{
+		unpause_buffer = 2;
+	}
 }
 
 function scr_pause_deactivate_objects(_pause_sounds = true)

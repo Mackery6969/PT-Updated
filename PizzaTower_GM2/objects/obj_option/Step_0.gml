@@ -173,6 +173,10 @@ if ((key_back || key_slap2 || keyboard_check_pressed(vk_escape)) && !instance_ex
 		{
 			obj_mainmenu.optionbuffer = 2;
 		}
+		if (instance_exists(obj_pause))
+		{
+			obj_pause.backbuffer = 2;
+		}
 		instance_destroy();
 	}
 	else

@@ -1,4 +1,5 @@
 pause = false;
+unpause_buffer = 0;
 i = false;
 color = make_color_rgb(121, 103, 151);
 scr_init_input();

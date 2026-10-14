@@ -2,7 +2,11 @@ if (instance_exists(obj_softlockcrash))
 {
 	exit;
 }
-if (!pause && instance_exists(obj_player) && alarm[3] == -1 && obj_player.key_start && room != Mainmenu && room != Finalintro && room != hub_loadingscreen && room != Endingroom && room != Creditsroom && room != Johnresurrectionroom && room != Longintro && room != Realtitlescreen && room != rank_room)
+if (unpause_buffer > 0)
+{
+	unpause_buffer--;
+}
+else if (!pause && instance_exists(obj_player) && alarm[3] == -1 && obj_player.key_start &&room != Mainmenu && room != Finalintro && room != hub_loadingscreen && room != Endingroom && room != Creditsroom && room != Johnresurrectionroom && room != Longintro && room != Realtitlescreen && room != rank_room)
 {
 	var _cutscenehandler = false;
 	with (obj_cutscene_handler)
