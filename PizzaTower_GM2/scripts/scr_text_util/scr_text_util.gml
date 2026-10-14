@@ -25,6 +25,34 @@ enum button_icons
 	menu_reset_binds = 22,
 }
 
+function font_add_sprite_ext_legacy(_sprite, _string_map, _prop, _sep)
+{
+	if (!variable_global_exists("font_sprite_offsets"))
+	{
+		global.font_sprite_offsets = {};
+	}
+	var _name = sprite_get_name(_sprite);
+	if (!struct_exists(global.font_sprite_offsets, _name))
+	{
+		global.font_sprite_offsets[$ _name] = [sprite_get_xoffset(_sprite), sprite_get_yoffset(_sprite)];
+		sprite_set_offset(_sprite, 0, 0);
+	}
+	return font_add_sprite_ext(_sprite, _string_map, _prop, _sep);
+}
+
+function font_sprite_get_offset(_sprite)
+{
+	if (variable_global_exists("font_sprite_offsets"))
+	{
+		var _offset = global.font_sprite_offsets[$ sprite_get_name(_sprite)];
+		if (!is_undefined(_offset))
+		{
+			return _offset;
+		}
+	}
+	return [sprite_get_xoffset(_sprite), sprite_get_yoffset(_sprite)];
+}
+
 function create_transformation_tip(_text, _seenbefore = noone)
 {
 	ini_open_from_string(obj_savesystem.ini_str);
@@ -60,8 +88,9 @@ function scr_compile_icon_text(_str, _pos = 1, _return_as_array = false)
 	var offset_y = 0;
 	if (info.spriteIndex != -1)
 	{
-		offset_x = sprite_get_xoffset(info.spriteIndex);
-		offset_y = sprite_get_yoffset(info.spriteIndex);
+		var _offset = font_sprite_get_offset(info.spriteIndex);
+		offset_x = _offset[0];
+		offset_y = _offset[1];
 	}
 	var saved_pos = 1;
 	while (_pos <= len)
@@ -429,8 +458,9 @@ function scr_draw_text_arr(_x, _y, _array, _color = c_white, _alpha = 1, _effect
 						draw_set_halign(fa_center);
 						draw_set_valign(fa_middle);
 						draw_set_font(global.tutorialfont);
-						var ox = sprite_get_xoffset(spr_tutorialfont) / 2;
-						var oy = sprite_get_yoffset(spr_tutorialfont) / 2;
+						var _offset = font_sprite_get_offset(spr_tutorialfont);
+						var ox = _offset[0] / 2;
+						var oy = _offset[1] / 2;
 						draw_text_color((cx + 16) - ox, (cy + 14) - oy, icon.str, c_black, c_black, c_black, c_black, _alpha);
 						draw_set_font(f);
 						draw_set_halign(fa_left);
