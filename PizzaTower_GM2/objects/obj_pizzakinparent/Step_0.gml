@@ -42,7 +42,7 @@ else
 	if (sprite_index != spr_intro)
 	{
 		var s = obj_player.sprite_index;
-		if (s == obj_player.spr_supertaunt1 || s == obj_player.spr_supertaunt2 || s == obj_player.spr_supertaunt3 || s == obj_player.spr_supertaunt4 || s == 2685)
+		if (s == obj_player.spr_supertaunt1 || s == obj_player.spr_supertaunt2 || s == obj_player.spr_supertaunt3 || s == obj_player.spr_supertaunt4 || s == spr_player_ratmountsupertaunt)
 		{
 			sprite_index = spr_intro;
 			image_index = 0;

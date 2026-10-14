@@ -19,7 +19,7 @@ if (!active && !_found)
 		with (obj_frontcanongoblin)
 		{
 			destroyed = false;
-			captain_sprite = 2196;
+			captain_sprite = spr_captaingoblin;
 			state = states.normal;
 		}
 	}
