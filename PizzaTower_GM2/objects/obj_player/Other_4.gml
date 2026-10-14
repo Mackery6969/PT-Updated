@@ -51,6 +51,11 @@ if (!is_bossroom())
 if (global.levelreset)
 {
 	scr_playerreset();
+	with (obj_music)
+	{
+		music = noone;
+		event_perform(ev_other, ev_room_start);
+	}
 	global.levelreset = false;
 	instance_destroy(obj_comboend);
 	instance_destroy(obj_combotitle);
