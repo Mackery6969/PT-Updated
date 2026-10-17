@@ -4,7 +4,7 @@ if (buffer > 0)
 }
 else if (!instance_exists(obj_fadeout))
 {
-	fmod_event_instance_stop("event:/sfx/misc/escaperumble");
+	fmod_event_instance_stop(global.snd_escaperumble, true);
 	instance_create(0, 0, obj_fadeout);
 }
 var w = sprite_get_width(bg_space1);
