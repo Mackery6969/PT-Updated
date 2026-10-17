@@ -9,7 +9,7 @@ depth = -600;
 start = false;
 time = 0;
 fadein = true;
-fmod_event_one_shot("event:/sfx/misc/escaperumble");
+fmod_event_instance_play(global.snd_escaperumble);
 if (!obj_player.ispeppino)
 {
 	sprite_index = spr_spacetravelcutsceneN;
