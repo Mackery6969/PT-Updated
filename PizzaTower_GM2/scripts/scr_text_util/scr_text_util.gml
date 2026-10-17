@@ -490,45 +490,45 @@ function scr_draw_text_arr(_x, _y, _array, _color = c_white, _alpha = 1, _effect
 					switch (_effect)
 					{
 						case text_effects.shake:
-							for (var j = 1; j <= string_length(val); j++)
+							var _ctx = { cx: cx, cy: cy, x2: x2, color: _color, alpha: _alpha };
+							string_foreach(val, method(_ctx, function(q, j)
 							{
-								var q = string_char_at(val, j);
 								var s1 = irandom_range(-1, 1);
 								var s2 = irandom_range(-1, 1);
 								if (!global.tdp_text_try_outline)
 								{
-									draw_text_color(cx + x2 + s1, cy + s2, q, _color, _color, _color, _color, _alpha);
+									draw_text_color(cx + x2 + s1, cy + s2, q, color, color, color, color, alpha);
 								}
 								else
 								{
-									tdp_draw_text_color(cx + x2 + s1, cy + s2, q, _color, _color, _color, _color, _alpha);
+									tdp_draw_text_color(cx + x2 + s1, cy + s2, q, color, color, color, color, alpha);
 								}
 								x2 += string_width(q);
-							}
+							}));
 							break;
 						case text_effects.wave:
-							for (var j = 1; j <= string_length(val); j++)
+							var _ctx = { cx: cx, cy: cy, x2: x2, color: _color, alpha: _alpha, options: _options };
+							string_foreach(val, method(_ctx, function(q, j)
 							{
-								var q = string_char_at(val, j);
 								var s = 0;
 								var o = 1;
-								if (_options != noone)
+								if (options != noone)
 								{
-									o = _options.offset;
+									o = options.offset;
 								}
 								var d = ((j % 2) == 0) ? -1 : 1;
 								var _dir = floor(Wave(-1, 1, 0.1, 0));
 								s += (_dir * d * o);
 								if (!global.tdp_text_try_outline)
 								{
-									draw_text_color(cx + x2, cy + s, q, _color, _color, _color, _color, _alpha);
+									draw_text_color(cx + x2, cy + s, q, color, color, color, color, alpha);
 								}
 								else
 								{
-									tdp_draw_text_color(cx + x2, cy + s, q, _color, _color, _color, _color, _alpha);
+									tdp_draw_text_color(cx + x2, cy + s, q, color, color, color, color, alpha);
 								}
 								x2 += string_width(q);
-							}
+							}));
 							break;
 					}
 				}

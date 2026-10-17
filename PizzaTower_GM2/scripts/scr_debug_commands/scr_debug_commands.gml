@@ -1,22 +1,20 @@
 function string_split(_str, _splitter)
 {
 	_str += " ";
-	var _current_str = "";
-	var _list = array_create(0);
-	for (var i = 1; i < (string_length(_str) + 1); i++)
+	var _ctx = { splitter: _splitter, current_str: "", list: array_create(0) };
+	string_foreach(_str, method(_ctx, function(_char, _pos)
 	{
-		var _char = string_char_at(_str, i);
-		if (_char != _splitter)
+		if (_char != splitter)
 		{
-			_current_str += _char;
+			current_str += _char;
 		}
 		else
 		{
-			array_push(_list, _current_str);
-			_current_str = "";
+			array_push(list, current_str);
+			current_str = "";
 		}
-	}
-	return _list;
+	}));
+	return _ctx.list;
 }
 
 function function_overload(_array, _func)
