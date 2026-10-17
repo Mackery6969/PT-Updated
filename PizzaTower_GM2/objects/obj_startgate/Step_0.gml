@@ -11,11 +11,10 @@ if (!pizza && (highscore > 0 || (boss && hats > 0)) && bbox_in_camera(view_camer
 			y_to = other.y - 125;
 			highscore = [];
 			var s = string(other.highscore);
-			for (var i = 1; i <= string_length(s); i++)
+			string_foreach(s, method(self, function(c)
 			{
-				var c = string_char_at(s, i);
 				array_push(highscore, [c, 0, 0]);
-			}
+			}));
 			switch (other.rank)
 			{
 				case "p":
