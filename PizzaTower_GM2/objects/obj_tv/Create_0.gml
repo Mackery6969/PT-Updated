@@ -47,3 +47,5 @@ hand_index = 0;
 bar_surface = noone;
 barfill_x = 0;
 showtime_buffer = 0;
+noise_idlespr_src = noone;
+noise_idlespr = -1;

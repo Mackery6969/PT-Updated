@@ -78,8 +78,12 @@ switch (state)
 		}
 		if (!obj_player.ispeppino)
 		{
-			var spr = sprite_get_name(idlespr);
-			spr = asset_get_index(concat(spr, "N"));
+			if (idlespr != noise_idlespr_src)
+			{
+				noise_idlespr_src = idlespr;
+				noise_idlespr = asset_get_index(concat(sprite_get_name(idlespr), "N"));
+			}
+			var spr = noise_idlespr;
 			if (spr > -1)
 			{
 				idlespr = spr;
