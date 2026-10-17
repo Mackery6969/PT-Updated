@@ -490,24 +490,24 @@ function scr_draw_text_arr(_x, _y, _array, _color = c_white, _alpha = 1, _effect
 					switch (_effect)
 					{
 						case text_effects.shake:
-							var _ctx = { cx: cx, cy: cy, x2: x2, color: _color, alpha: _alpha };
+							var _ctx = { base_x: cx, base_y: cy, offset_x: x2, color: _color, alpha: _alpha };
 							string_foreach(val, method(_ctx, function(q, j)
 							{
 								var s1 = irandom_range(-1, 1);
 								var s2 = irandom_range(-1, 1);
 								if (!global.tdp_text_try_outline)
 								{
-									draw_text_color(cx + x2 + s1, cy + s2, q, color, color, color, color, alpha);
+									draw_text_color(base_x + offset_x + s1, base_y + s2, q, color, color, color, color, alpha);
 								}
 								else
 								{
-									tdp_draw_text_color(cx + x2 + s1, cy + s2, q, color, color, color, color, alpha);
+									tdp_draw_text_color(base_x + offset_x + s1, base_y + s2, q, color, color, color, color, alpha);
 								}
-								x2 += string_width(q);
+								offset_x += string_width(q);
 							}));
 							break;
 						case text_effects.wave:
-							var _ctx = { cx: cx, cy: cy, x2: x2, color: _color, alpha: _alpha, options: _options };
+							var _ctx = { base_x: cx, base_y: cy, offset_x: x2, color: _color, alpha: _alpha, options: _options };
 							string_foreach(val, method(_ctx, function(q, j)
 							{
 								var s = 0;
@@ -521,13 +521,13 @@ function scr_draw_text_arr(_x, _y, _array, _color = c_white, _alpha = 1, _effect
 								s += (_dir * d * o);
 								if (!global.tdp_text_try_outline)
 								{
-									draw_text_color(cx + x2, cy + s, q, color, color, color, color, alpha);
+									draw_text_color(base_x + offset_x, base_y + s, q, color, color, color, color, alpha);
 								}
 								else
 								{
-									tdp_draw_text_color(cx + x2, cy + s, q, color, color, color, color, alpha);
+									tdp_draw_text_color(base_x + offset_x, base_y + s, q, color, color, color, color, alpha);
 								}
-								x2 += string_width(q);
+								offset_x += string_width(q);
 							}));
 							break;
 					}
