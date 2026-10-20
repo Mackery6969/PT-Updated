@@ -14,7 +14,7 @@ switch (state)
 		}
 		screen_clear(make_color_rgb(248, 0, 0));
 		draw_sprite(spr_monsterjumpscarebg, 0, obj_screensizer.normal_size_fix_x, obj_screensizer.normal_size_fix_y);
-		var _y = obj_screensizer.normal_size_fix_x + yy + irandom_range(-t, t);
+		var _y = obj_screensizer.normal_size_fix_y + yy + irandom_range(-t, t);
 		if (_y < 0)
 		{
 			_y = 0;
