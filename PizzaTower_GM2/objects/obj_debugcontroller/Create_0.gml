@@ -97,7 +97,7 @@ HIDETILES = new DebugCommand("hidetiles", "", "<bool>", function(_bool)
 	}
 	else
 	{
-		global.hidetiles = _bool;
+		global.hidetiles = get_bool(_bool);
 	}
 	layer_set_visible("Tiles_BG", !global.hidetiles);
 	layer_set_visible("Tiles_BG2", !global.hidetiles);
@@ -118,7 +118,7 @@ THROWARC = new DebugCommand("throwarc", "", "<bool>", function(_bool)
 	}
 	else
 	{
-		global.throwarc = _bool;
+		global.throwarc = get_bool(_bool);
 	}
 });
 NOCLIP = new DebugCommand("noclip", "", "", function()
@@ -289,7 +289,7 @@ CAMERA_ZOOM = new DebugCommand("camera_zoom", "Zoom", "<targetzoom> <spd>", func
 	}
 	with (obj_camera)
 	{
-		targetzoom = _targetzoom;
+		targetzoom = real(_targetzoom);
 		targetzoom = clamp(targetzoom, 0, max_zoom);
 		if (_spd != undefined)
 		{
