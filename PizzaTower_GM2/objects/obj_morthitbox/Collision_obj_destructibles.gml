@@ -4,7 +4,10 @@ with (other)
 	if (object_index != obj_onewaybigblock)
 	{
 		instance_destroy();
-		Mort_DownMovement();
+		with (_self)
+		{
+			Mort_DownMovement();
+		}
 	}
 	else
 	{
@@ -12,7 +15,10 @@ with (other)
 		if (_col == noone)
 		{
 			instance_destroy();
-			Mort_DownMovement();
+			with (_self)
+			{
+				Mort_DownMovement();
+			}
 		}
 	}
 }
