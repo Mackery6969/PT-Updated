@@ -1,4 +1,4 @@
-var b = false;
+var b = true;
 with (obj_bosscontroller)
 {
 	if (state == states.arenaintro)
