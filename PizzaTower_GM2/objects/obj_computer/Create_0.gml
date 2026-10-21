@@ -17,11 +17,11 @@ for (var i = 0; i < array_length(lvl); i++)
 	treasure += ini_read_real("Treasure", name, false);
 	for (var j = 0; j < 5; j++)
 	{
-		toppins += ini_read_real("Toppin", concat(name, j + 1), false);
+		toppins += ini_read_real("Toppin", string_concat(name, j + 1), false);
 	}
 	for (var j = 0; j < 3; j++)
 	{
-		achievements += ini_read_real("achievements", concat(name, j + 1), false);
+		achievements += ini_read_real("achievements", string_concat(name, j + 1), false);
 	}
 }
 for (var i = 0; i < array_length(extra_ach); i++)

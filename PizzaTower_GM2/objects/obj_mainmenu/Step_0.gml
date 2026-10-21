@@ -324,7 +324,7 @@ switch (state)
 		{
 			if (deleteselect == 0)
 			{
-				var file = concat(get_save_folder(), "/saveData", currentselect + 1, !shownoise ? ".ini" : "N.ini");
+				var file = string_concat(get_save_folder(), "/saveData", currentselect + 1, !shownoise ? ".ini" : "N.ini");
 				if (file_exists(file))
 				{
 					file_delete(file);

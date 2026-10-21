@@ -3,7 +3,7 @@ function pal_swap_set(_palspr, _palindex)
 	var tex = sprite_get_texture(_palspr, 0);
 	var UVs = sprite_get_uvs(_palspr, 0);
 	texture_set_stage(global.Pal_Texture, tex);
-	texture_set_interpolation_ext(global.Pal_Texture, 1);
+	gpu_set_texfilter_ext(global.Pal_Texture, 1);
 	var texel_x = texture_get_texel_width(tex);
 	var texel_y = texture_get_texel_height(tex);
 	var texel_hx = texel_x * 0.5;

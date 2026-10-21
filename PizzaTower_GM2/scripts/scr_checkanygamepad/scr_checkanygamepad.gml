@@ -30,7 +30,7 @@ function scr_check_menu_repeats(_inputname, _key, _is_gamepad)
 		var in = input[i];
 		if (in[0] != "menu_quit" && in[0] != _inputname && string_copy(input[i][0], 0, 4) == "menu")
 		{
-			array_push(query, concat(input[i][0], _is_gamepad ? "C" : ""));
+			array_push(query, string_concat(input[i][0], _is_gamepad ? "C" : ""));
 		}
 	}
 	for (var i = 0; i < array_length(query); i++)

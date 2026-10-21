@@ -33,9 +33,9 @@ if (hidden)
 }
 else
 {
-	texttitle = lang_get_value(concat("achievement_", _title, "title"));
+	texttitle = lang_get_value(string_concat("achievement_", _title, "title"));
 }
-textdesc = lang_get_value(concat("achievement_", _desc));
+textdesc = lang_get_value(string_concat("achievement_", _desc));
 if (is_string(textdesc))
 {
 	textdesc = string_replace_all(textdesc, "\\n", "\n");

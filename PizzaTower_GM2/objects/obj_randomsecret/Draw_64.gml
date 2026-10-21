@@ -8,7 +8,7 @@ if (start)
 	var _secs = string(seconds);
 	if (seconds < 10)
 	{
-		_secs = concat("0", seconds);
+		_secs = string_concat("0", seconds);
 	}
 	else
 	{
@@ -34,7 +34,7 @@ if (start)
 			yy += irandom_range(-1, 1);
 		}
 	}
-	draw_text(xx, yy, concat(_mins, ":", _secs));
+	draw_text(xx, yy, string_concat(_mins, ":", _secs));
 	draw_set_color(c_white);
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);

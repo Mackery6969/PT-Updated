@@ -36,7 +36,7 @@ function get_percentage()
 		var tc = c_black;
 		for (var j = 0; j < 5; j++)
 		{
-			if (ini_read_real("Toppin", concat(level, j + 1), false))
+			if (ini_read_real("Toppin", string_concat(level, j + 1), false))
 			{
 				count++;
 			}
@@ -51,7 +51,7 @@ function get_percentage()
 		var ac = 0;
 		for (var j = 0; j < 3; j++)
 		{
-			if (ini_read_real("achievements", concat(level, j + 1), false))
+			if (ini_read_real("achievements", string_concat(level, j + 1), false))
 			{
 				ac++;
 			}

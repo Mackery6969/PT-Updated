@@ -12,30 +12,30 @@ offload_textures = false;
 offload_arr = noone;
 pause_menu = ["pause_resume", "pause_options", "pause_restart", "pause_exit"];
 pause_menu_map = ds_map_create();
-ds_map_set(pause_menu_map, "pause_resume", [0, function()
+pause_menu_map[? "pause_resume"] = [0, function()
 {
 	scr_pause_activate_objects();
 	pause_unpause_music();
 	instance_destroy(obj_option);
 	instance_destroy(obj_keyconfig);
-}]);
-ds_map_set(pause_menu_map, "pause_achievements", [5, function()
+}];
+pause_menu_map[? "pause_achievements"] = [5, function()
 {
 	fmod_event_one_shot("event:/sfx/ui/select");
 	with (instance_create(x, y, obj_achievement_pause))
 	{
 		depth = other.depth - 1;
 	}
-}]);
-ds_map_set(pause_menu_map, "pause_options", [1, function()
+}];
+pause_menu_map[? "pause_options"] = [1, function()
 {
 	fmod_event_one_shot("event:/sfx/ui/select");
 	with (instance_create(x, y, obj_option))
 	{
 		depth = other.depth - 1;
 	}
-}]);
-ds_map_set(pause_menu_map, "pause_restart", [2, function()
+}];
+pause_menu_map[? "pause_restart"] = [2, function()
 {
 	if (room == Endingroom || room == tower_soundtest || room == tower_soundtestlevel || room == Creditsroom || room == Johnresurrectionroom)
 	{
@@ -58,7 +58,7 @@ ds_map_set(pause_menu_map, "pause_restart", [2, function()
 	{
 		fmod_event_one_shot("event:/sfx/ui/select");
 	}
-}]);
+}];
 
 var exit_function = function()
 {
@@ -113,8 +113,8 @@ var exit_function = function()
 	ds_list_destroy(il);
 };
 
-ds_map_set(pause_menu_map, "pause_exit", [3, exit_function]);
-ds_map_set(pause_menu_map, "pause_exit_title", [3, exit_function]);
+pause_menu_map[? "pause_exit"] = [3, exit_function];
+pause_menu_map[? "pause_exit_title"] = [3, exit_function];
 cursor_index = 0;
 cursor_x = -1000;
 cursor_y = -1000;

@@ -55,7 +55,7 @@ for (var i = 0; i < array_length(achievements); i++)
 if (achievement > -1)
 {
 	var ach = achievements[achievement];
-	var txt = concat(ach.name, "\n\n", ach.description);
+	var txt = string_concat(ach.name, "\n\n", ach.description);
 	tdp_draw_text_color(CAM_WIDTH / 2, yy + 75, txt, c_white, c_white, c_white, c_white, 1);
 }
 tdp_draw_set_font(lang_get_font("bigfont"));

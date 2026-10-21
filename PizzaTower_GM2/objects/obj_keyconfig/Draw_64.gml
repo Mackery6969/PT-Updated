@@ -18,7 +18,7 @@ for (var i = 0; i < array_length(input); i++)
 	tdp_draw_set_halign(0);
 	tdp_draw_set_valign(0);
 	var b = input[i];
-	var in = controller ? tdp_input_get(concat(b[0], "C")) : tdp_input_get(b[0]);
+	var in = controller ? tdp_input_get(string_concat(b[0], "C")) : tdp_input_get(b[0]);
 	c = (key_select == i) ? c_white : c_gray;
 	var yy = (50 - (select_visual * 50)) + (50 * i);
 	if (array_length(b) < 2)

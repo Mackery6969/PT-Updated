@@ -123,7 +123,7 @@ if (global.panic)
 	}
 	if (seconds < 10)
 	{
-		seconds = concat("0", seconds);
+		seconds = string_concat("0", seconds);
 	}
 	else
 	{
@@ -132,7 +132,7 @@ if (global.panic)
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
 	draw_set_font(global.bigfont);
-	draw_text(timer_x + 153, (timer_y + 18) - (font_sprite_get_offset(spr_font)[1] / 2), concat(minutes, ":", seconds));
+	draw_text(timer_x + 153, (timer_y + 18) - (font_sprite_get_offset(spr_font)[1] / 2), string_concat(minutes, ":", seconds));
 }
 else if (surface_exists(bar_surface))
 {

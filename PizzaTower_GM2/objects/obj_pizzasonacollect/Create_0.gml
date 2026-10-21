@@ -13,6 +13,6 @@ while (r == -1 || r == 8)
 {
 	r = irandom_range(1, 55);
 }
-idlespr = asset_get_index(concat("spr_pizzasona", r));
-throwspr = asset_get_index(concat("spr_pizzasona", r, "throw"));
-transitionspr = asset_get_index(concat("spr_pizzasona", r, "trans"));
+idlespr = asset_get_index(string_concat("spr_pizzasona", r));
+throwspr = asset_get_index(string_concat("spr_pizzasona", r, "throw"));
+transitionspr = asset_get_index(string_concat("spr_pizzasona", r, "trans"));

@@ -49,11 +49,11 @@ if (lvl != "pepperman" && lvl != "vigilante" && lvl != "pizzaface" && lvl != "fa
 	}
 	for (var i = 0; i < (sprite_get_number(sprite) / 2); i++)
 	{
-		var n = concat("achievement_", lvl, i + 1);
-		var _got = ini_read_real("achievements", concat(lvl, i + 1), false);
+		var n = string_concat("achievement_", lvl, i + 1);
+		var _got = ini_read_real("achievements", string_concat(lvl, i + 1), false);
 		array_push(achievements, 
 		{
-			name: lang_get_value(concat(n, "title")),
+			name: lang_get_value(string_concat(n, "title")),
 			description: lang_get_value_newline(n),
 			got: _got
 		});
@@ -62,11 +62,11 @@ if (lvl != "pepperman" && lvl != "vigilante" && lvl != "pizzaface" && lvl != "fa
 else
 {
 	sprite = spr_achievement_bosses;
-	var n = concat("achievement_", lvl);
+	var n = string_concat("achievement_", lvl);
 	var _got = ini_read_real("achievements", lvl, false);
 	array_push(achievements, 
 	{
-		name: lang_get_value(concat(n, "title")),
+		name: lang_get_value(string_concat(n, "title")),
 		description: lang_get_value_newline(n),
 		image_index: ix,
 		got: _got

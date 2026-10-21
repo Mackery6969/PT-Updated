@@ -3,7 +3,7 @@ function noise_aftimg_set_pal(_spr, _palindex, _pal = 5)
 	var tex = sprite_get_texture(_spr, 0);
 	var UVs = sprite_get_uvs(_spr, 0);
 	texture_set_stage(global.N_Pal_Texture, tex);
-	texture_set_interpolation_ext(global.N_Pal_Texture, 0);
+	gpu_set_texfilter_ext(global.N_Pal_Texture, 0);
 	var texel_x = texture_get_texel_width(tex);
 	var texel_y = texture_get_texel_height(tex);
 	var texel_hx = texel_x * 0.5;

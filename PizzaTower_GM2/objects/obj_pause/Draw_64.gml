@@ -55,7 +55,7 @@ if (fade > 0)
 				c = c_white;
 			}
 			tdp_draw_text_color(SCREEN_WIDTH / 2, yy, t, c, c, c, c, fade);
-			var ic = array_get(ds_map_find_value(pause_menu_map, b), 0);
+			var ic = pause_menu_map[? b][0];
 			if (ic != undefined)
 			{
 				scr_pauseicon_draw(ic, (SCREEN_WIDTH / 2) + (string_width(t) / 2) + 50, yy);
@@ -82,7 +82,7 @@ if (fade > 0 && lvlsave != noone && lvlsave != "tutorial" && lvlsave != "secretw
 		draw_set_halign(fa_right);
 		draw_set_valign(fa_middle);
 		draw_set_color(c_white);
-		draw_text(SCREEN_WIDTH - 132 - 60, SCREEN_HEIGHT - 124 - 8, concat(secretcount, "/3"));
+		draw_text(SCREEN_WIDTH - 132 - 60, SCREEN_HEIGHT - 124 - 8, string_concat(secretcount, "/3"));
 		draw_set_alpha(1);
 	}
 }

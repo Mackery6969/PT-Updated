@@ -37,12 +37,12 @@ add_hit = function(_inst, _object_index = noone)
 	}
 };
 
-ds_map_set(collision_function, noone, function(arg0)
+collision_function[? noone] = function(arg0)
 {
 	trace("Non collision, but not misssed");
 	return true;
-});
-ds_map_set(collision_function, obj_baddie, function(_obj)
+};
+collision_function[? obj_baddie] = function(_obj)
 {
 	if (instance_exists(obj_bossplayerdeath))
 	{
@@ -191,8 +191,8 @@ ds_map_set(collision_function, obj_baddie, function(_obj)
 		return true;
 	}
 	return false;
-});
-ds_map_set(collision_function, obj_pepper_marbleblock, function(_obj)
+};
+collision_function[? obj_pepper_marbleblock] = function(_obj)
 {
 	with (_obj)
 	{
@@ -241,17 +241,17 @@ ds_map_set(collision_function, obj_pepper_marbleblock, function(_obj)
 		}
 	}
 	return false;
-});
-ds_map_set(collision_function, obj_peppermanartdude, function(_obj)
+};
+collision_function[? obj_peppermanartdude] = function(_obj)
 {
 	instance_destroy(_obj);
 	return true;
-});
-ds_map_set(collision_function, obj_johnecheese, function(_obj)
+};
+collision_function[? obj_johnecheese] = function(_obj)
 {
 	if (scr_pistolhit(_obj, pistol_damage))
 	{
 		return true;
 	}
 	return false;
-});
+};

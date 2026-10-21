@@ -81,7 +81,7 @@ switch (state)
 			if (idlespr != noise_idlespr_src)
 			{
 				noise_idlespr_src = idlespr;
-				noise_idlespr = asset_get_index(concat(sprite_get_name(idlespr), "N"));
+				noise_idlespr = asset_get_index(string_concat(sprite_get_name(idlespr), "N"));
 			}
 			var spr = noise_idlespr;
 			if (spr > -1)

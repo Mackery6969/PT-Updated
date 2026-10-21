@@ -57,11 +57,11 @@ UNLOCK_TOPPINS = new DebugCommand("unlock_toppins", "Unlocks the toppins of the 
 		exit;
 	}
 	ini_open_from_string(obj_savesystem.ini_str);
-	ini_write_real("Toppin", concat(_level_name_ini, 1), true);
-	ini_write_real("Toppin", concat(_level_name_ini, 2), true);
-	ini_write_real("Toppin", concat(_level_name_ini, 3), true);
-	ini_write_real("Toppin", concat(_level_name_ini, 4), true);
-	ini_write_real("Toppin", concat(_level_name_ini, 5), true);
+	ini_write_real("Toppin", string_concat(_level_name_ini, 1), true);
+	ini_write_real("Toppin", string_concat(_level_name_ini, 2), true);
+	ini_write_real("Toppin", string_concat(_level_name_ini, 3), true);
+	ini_write_real("Toppin", string_concat(_level_name_ini, 4), true);
+	ini_write_real("Toppin", string_concat(_level_name_ini, 5), true);
 	obj_savesystem.ini_str = ini_close();
 	gamesave_async_save();
 });
@@ -73,7 +73,7 @@ UNLOCK_BOSS_KEY = new DebugCommand("unlock_boss_key", "Unlocks the boss key of t
 	}
 	_number = real(_number);
 	ini_open_from_string(obj_savesystem.ini_str);
-	var n = concat("w", _number, "stick");
+	var n = string_concat("w", _number, "stick");
 	ini_write_real(n, "bosskey", true);
 	obj_savesystem.ini_str = ini_close();
 	gamesave_async_save();
@@ -307,7 +307,7 @@ PLAYER_SET_STATE = new DebugCommand("player_set_state", "Changes the player stat
 	{
 		exit;
 	}
-	_state = ds_map_find_value(state_map, _state);
+	_state = state_map[? _state];
 	if (!is_undefined(_state))
 	{
 		with (obj_player)
@@ -341,11 +341,11 @@ active = false;
 showcollisions = false;
 showhud = true;
 state_map = ds_map_create();
-ds_map_set(state_map, "states.normal", states.normal);
-ds_map_set(state_map, "states.cheesepep", states.cheesepep);
-ds_map_set(state_map, "states.knightpep", states.knightpep);
-ds_map_set(state_map, "states.firemouth", states.firemouth);
-ds_map_set(state_map, "states.ratmount", states.ratmount);
+state_map[? "states.normal"] = states.normal;
+state_map[? "states.cheesepep"] = states.cheesepep;
+state_map[? "states.knightpep"] = states.knightpep;
+state_map[? "states.firemouth"] = states.firemouth;
+state_map[? "states.ratmount"] = states.ratmount;
 command_list = ds_list_create();
 ds_list_add(command_list, DESTROYICE, SET_GAME_SPEED, SHOW_HUD, SHOW_COLLISIONS, PLAYER_ROOM, CAMERA_ZOOM, PLAYER_SET_STATE, PANIC, ALLTOPPINS, ROOMCHECK, SWITCH_CHAR, SET_BOSS_HP);
 ds_list_add(command_list, KILL_BOSS, TEST_P_RANK, SETCOMBO, GIVEKEY, NOCLIP, THROWARC, HIDETILES, LOCKCAMERA, BOSSINVINCIBLE, UNLOCK_TOPPINS, UNLOCK_BOSS_KEY, SHOW_DEBUG_OVERLAY);
@@ -360,7 +360,7 @@ function FindCommand(_command)
 {
 	for (var i = 0; i < ds_list_size(command_list); i++)
 	{
-		var b = ds_list_find_value(command_list, i);
+		var b = command_list[| i];
 		if (b.command_id == _command)
 		{
 			return b;

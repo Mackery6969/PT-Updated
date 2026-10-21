@@ -26,7 +26,7 @@ function add_music(_room, _event, _secretevent, _is_continuous, _roomstartfunc =
 			event_secret = fmod_event_create_instance(_secretevent);
 		}
 	}
-	ds_map_set(music_map, _room, b);
+	music_map[? _room] = b;
 	return b;
 }
 

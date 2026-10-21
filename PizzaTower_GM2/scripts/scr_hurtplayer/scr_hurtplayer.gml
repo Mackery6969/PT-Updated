@@ -254,7 +254,7 @@ function scr_hurtplayer(_player)
 				{
 					with (instance_create(121, 60, obj_negativenumber))
 					{
-						number = concat("-", loseamount);
+						number = string_concat("-", loseamount);
 					}
 				}
 				global.collect -= loseamount;

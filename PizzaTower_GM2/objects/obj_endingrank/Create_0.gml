@@ -204,9 +204,9 @@ percentage = _perc;
 percvisual = 0;
 text =
 [
-	[false, concat(lang_get_value("rank_totaltime"), timer)],
-	[false, concat(lang_get_value("rank_totaldamage"), damage)],
-	[false, concat(lang_get_value("rank_totalscore"), _score)],
-	[false, concat(lang_get_value("rank_totalenemies"), _enemies)]
+	[false, string_concat(lang_get_value("rank_totaltime"), timer)],
+	[false, string_concat(lang_get_value("rank_totaldamage"), damage)],
+	[false, string_concat(lang_get_value("rank_totalscore"), _score)],
+	[false, string_concat(lang_get_value("rank_totalenemies"), _enemies)]
 ];
 text_pos = 0;

@@ -19,7 +19,7 @@ function tdp_input_init()
 
 function tdp_input_add(_input)
 {
-	ds_map_set(global.input_list, _input.name, _input);
+	global.input_list[? _input.name] = _input;
 }
 
 function tdp_input_update(_device = -1)
@@ -36,7 +36,7 @@ function tdp_input_update(_device = -1)
 
 function tdp_input_get(_inputname)
 {
-	return ds_map_find_value(global.input_list, _inputname);
+	return global.input_list[? _inputname];
 }
 
 function tdp_input_ini_read(_inputkey, _input)

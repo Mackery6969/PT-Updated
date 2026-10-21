@@ -1,6 +1,6 @@
 function add_rank_achievements(_world, _rank, _spr, _index, _level_array)
 {
-	var b = add_achievement_notify(concat(_rank, "ranks", _world), noone, function(_world)
+	var b = add_achievement_notify(string_concat(_rank, "ranks", _world), noone, function(_world)
 	{
 		var type = _world[0];
 		if (type == notifications.level_finished)
@@ -9,17 +9,17 @@ function add_rank_achievements(_world, _rank, _spr, _index, _level_array)
 			var _finished = true;
 			ini_open_from_string(obj_savesystem.ini_str);
 			var map = ds_map_create();
-			ds_map_set(map, "d", 0);
-			ds_map_set(map, "c", 1);
-			ds_map_set(map, "b", 2);
-			ds_map_set(map, "a", 3);
-			ds_map_set(map, "s", 4);
-			ds_map_set(map, "p", 5);
+			map[? "d"] = 0;
+			map[? "c"] = 1;
+			map[? "b"] = 2;
+			map[? "a"] = 3;
+			map[? "s"] = 4;
+			map[? "p"] = 5;
 			for (var i = 0; i < array_length(n); i++)
 			{
 				var b = n[i];
 				var s = ini_read_string("Ranks", b, "d");
-				if (ds_map_find_value(map, s) < ds_map_find_value(map, rank))
+				if (map[? s] < map[? rank])
 				{
 					_finished = false;
 				}

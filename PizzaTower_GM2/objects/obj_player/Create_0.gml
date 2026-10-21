@@ -473,16 +473,16 @@ if (!variable_global_exists("saveroom"))
 	global.creditsfont = font_add_sprite_ext_legacy(spr_creditsfont, "ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz.:!¡0123456789?'\"ÁÄÃÀÂÉÈÊËÍÌÎÏÓÖÕÔÒÚÙÛÜáäãàâéèêëíìîïóöõôòúùûüÇç_-[]▼()&#风雨廊桥전태양*яиБжидГзвбнльœ«»+ß", true, 2);
 	global.moneyfont = font_add_sprite_ext_legacy(spr_stickmoney_font, "0123456789$-", true, 0);
 	global.font_map = ds_map_create();
-	ds_map_set(global.font_map, "bigfont_en", global.bigfont);
-	ds_map_set(global.font_map, "smallfont_en", global.smallfont);
-	ds_map_set(global.font_map, "tutorialfont_en", global.tutorialfont);
-	ds_map_set(global.font_map, "creditsfont_en", global.creditsfont);
-	ds_map_set(global.font_map, "captionfont_en", fnt_caption);
+	global.font_map[? "bigfont_en"] = global.bigfont;
+	global.font_map[? "smallfont_en"] = global.smallfont;
+	global.font_map[? "tutorialfont_en"] = global.tutorialfont;
+	global.font_map[? "creditsfont_en"] = global.creditsfont;
+	global.font_map[? "captionfont_en"] = fnt_caption;
 	font_add_enable_aa(false);
 	var key = ds_map_find_first(global.lang_map);
 	for (var i = 0; i < ds_map_size(global.lang_map); i++)
 	{
-		var lang = ds_map_find_value(global.lang_map, key);
+		var lang = global.lang_map[? key];
 		lang_load_fonts(key);
 		key = ds_map_find_next(global.lang_map, key);
 	}

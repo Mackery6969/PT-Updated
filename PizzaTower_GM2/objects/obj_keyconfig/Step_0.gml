@@ -67,7 +67,7 @@ if (!selecting)
 			{
 				if (controller)
 				{
-					_v = concat(_v, "C");
+					_v = string_concat(_v, "C");
 				}
 				if (!is_undefined(tdp_input_get(_v)) && tdp_input_get(_v).actions != noone && array_length(tdp_input_get(_v).actions) <= 0)
 				{
@@ -84,7 +84,7 @@ if (!selecting)
 				var _v = input[i][0];
 				if (controller)
 				{
-					_v = concat(_v, "C");
+					_v = string_concat(_v, "C");
 				}
 				tdp_input_ini_write(_v);
 			}
@@ -120,7 +120,7 @@ if (!selecting)
 			}
 			else
 			{
-				tdp_input_get(concat(input[key_select][0], "C")).actions = array_create(0);
+				tdp_input_get(string_concat(input[key_select][0], "C")).actions = array_create(0);
 			}
 			var name = input[key_select][0];
 			if (name == "menu_select")
@@ -181,7 +181,7 @@ else
 		{
 			startbuffer = 5;
 			addbuffer = 5;
-			var in = tdp_input_get(concat(input[key_select][0], "C"));
+			var in = tdp_input_get(string_concat(input[key_select][0], "C"));
 			if (!is_array(val))
 			{
 				if (!in.has_value(tdp_input_actiontypes.gamepad_button, val))
@@ -195,7 +195,7 @@ else
 			}
 			selecting = false;
 		}
-		else if (input[key_select][0] != "menu_select" || !tdp_input_get(concat(input[key_select][0], "C")).is_empty())
+		else if (input[key_select][0] != "menu_select" || !tdp_input_get(string_concat(input[key_select][0], "C")).is_empty())
 		{
 			startbuffer = 5;
 			addbuffer = 5;

@@ -4,5 +4,5 @@ function get_savefile_ini(_is_peppino = true)
 	{
 		_is_peppino = false;
 	}
-	return concat("saveData", global.currentsavefile, _is_peppino ? "" : "N", ".ini");
+	return string_concat("saveData", global.currentsavefile, _is_peppino ? "" : "N", ".ini");
 }

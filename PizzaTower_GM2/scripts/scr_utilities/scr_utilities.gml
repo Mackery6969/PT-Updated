@@ -98,16 +98,6 @@ function trace()
 	show_debug_message(_string);
 }
 
-function concat()
-{
-	var _string = "";
-	for (var i = 0; i < argument_count; i++)
-	{
-		_string += string(argument[i]);
-	}
-	return _string;
-}
-
 function embed_value_string(_str, _array)
 {
 	var str_copy = string_copy(_str, 1, string_length(_str));

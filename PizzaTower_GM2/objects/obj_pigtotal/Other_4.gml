@@ -46,7 +46,7 @@ else
 		var b = levels[i];
 		for (var j = 0; j < 5; j++)
 		{
-			if (ini_read_real("Toppin", concat(b, j + 1), false))
+			if (ini_read_real("Toppin", string_concat(b, j + 1), false))
 			{
 				global.pigtotal += 10;
 			}

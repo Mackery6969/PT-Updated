@@ -91,7 +91,7 @@ if (!steam_utils_is_steam_running_on_steam_deck())
 	for (var i = 0; i < array_length(global.resolutions[obj_screensizer.aspect_ratio]); i++)
 	{
 		var b = global.resolutions[obj_screensizer.aspect_ratio][i];
-		array_push(res, create_option_value(concat(b[0], "X", b[1]), i, false));
+		array_push(res, create_option_value(string_concat(b[0], "X", b[1]), i, false));
 	}
 	add_option_multiple(video_menu, 2, "option_resolution", res, function(_resolution)
 	{
@@ -154,7 +154,7 @@ add_option_press(resolution_menu, 0, "option_back", function()
 for (var i = 0; i < array_length(global.resolutions[obj_screensizer.aspect_ratio]); i++)
 {
 	var b = global.resolutions[obj_screensizer.aspect_ratio][i];
-	add_option_press(resolution_menu, i + 1, concat(b[0], "X", b[1]), function()
+	add_option_press(resolution_menu, i + 1, string_concat(b[0], "X", b[1]), function()
 	{
 		var opt = global.option_resolution;
 		global.option_resolution = menus[menu].options[optionselected].option_id - 1;

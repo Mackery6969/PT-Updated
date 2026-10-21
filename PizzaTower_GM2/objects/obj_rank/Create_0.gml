@@ -32,23 +32,23 @@ if (!global.swapmode)
 {
 	text =
 	[
-		[false, concat(lang_get_value("rank_highscore"), global.collect)],
-		[false, concat(lang_get_value("rank_time"), timer)],
-		[false, concat(lang_get_value("rank_damage"), global.player_damage)],
-		[false, concat(lang_get_value("rank_combo"), global.highest_combo)]
+		[false, string_concat(lang_get_value("rank_highscore"), global.collect)],
+		[false, string_concat(lang_get_value("rank_time"), timer)],
+		[false, string_concat(lang_get_value("rank_damage"), global.player_damage)],
+		[false, string_concat(lang_get_value("rank_combo"), global.highest_combo)]
 	];
 }
 else
 {
 	text =
 	[
-		[false, concat(lang_get_value("rank_highscore"), global.collect)],
-		[false, concat(lang_get_value("rank_highscore_p1"), global.collect_player[0])],
-		[false, concat(lang_get_value("rank_highscore_p2"), global.collect_player[1])],
-		[false, concat(lang_get_value("rank_damage_p1"), global.swap_damage[0])],
-		[false, concat(lang_get_value("rank_damage_p2"), global.swap_damage[1])],
-		[false, concat(lang_get_value("rank_time"), timer)],
-		[false, concat(lang_get_value("rank_combo"), global.highest_combo)]
+		[false, string_concat(lang_get_value("rank_highscore"), global.collect)],
+		[false, string_concat(lang_get_value("rank_highscore_p1"), global.collect_player[0])],
+		[false, string_concat(lang_get_value("rank_highscore_p2"), global.collect_player[1])],
+		[false, string_concat(lang_get_value("rank_damage_p1"), global.swap_damage[0])],
+		[false, string_concat(lang_get_value("rank_damage_p2"), global.swap_damage[1])],
+		[false, string_concat(lang_get_value("rank_time"), timer)],
+		[false, string_concat(lang_get_value("rank_combo"), global.highest_combo)]
 		];
 	if (global.swapmode)
 	{

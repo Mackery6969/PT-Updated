@@ -32,7 +32,7 @@ function scr_add_grannypizzalevel(_ini_key, _icon, _secrets = true, _toppins = t
 	{
 		for (var i = 0; i < array_length(q.toppinarr); i++)
 		{
-			q.toppinarr[i] = ini_read_real("Toppin", concat(_ini_key, i + 1), false);
+			q.toppinarr[i] = ini_read_real("Toppin", string_concat(_ini_key, i + 1), false);
 		}
 	}
 	if (q.treasure)

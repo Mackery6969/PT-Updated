@@ -29,6 +29,6 @@ if (state > 0)
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_top);
 	draw_set_color(c_white);
-	draw_text_color(x, y + 16, concat("+", extrahats), c_white, c_white, c_white, c_white, image_alpha);
+	draw_text_color(x, y + 16, string_concat("+", extrahats), c_white, c_white, c_white, c_white, image_alpha);
 	draw_sprite_ext(spr_ranks_hud, rank_index, x, y + 80, rank_scale, rank_scale, 0, c_white, image_alpha);
 }

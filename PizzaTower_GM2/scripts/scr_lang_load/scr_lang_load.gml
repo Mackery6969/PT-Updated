@@ -1,10 +1,10 @@
 function scr_lang_load_init()
 {
-	var lang = ds_map_find_value(global.lang_available, global.option_lang);
+	var lang = global.lang_available[? global.option_lang];
 	if (is_undefined(lang))
 	{
 		global.option_lang = "en";
-		lang = ds_map_find_value(global.lang_available, global.option_lang);
+		lang = global.lang_available[? global.option_lang];
 	}
 	ds_queue_enqueue(global.lang_to_load, lang.file);
 	ds_list_clear(global.lang_textures_to_load);
@@ -13,14 +13,14 @@ function scr_lang_load_init()
 
 function lang_load_fonts(_language)
 {
-	var lang = ds_map_find_value(global.lang_map, _language);
-	if (ds_map_find_value(lang, "custom_fonts"))
+	var lang = global.lang_map[? _language];
+	if (lang[? "custom_fonts"])
 	{
-		ds_map_set(global.font_map, concat("tutorialfont_", _language), lang_get_custom_font("tutorialfont", lang));
-		ds_map_set(global.font_map, concat("creditsfont_", _language), lang_get_custom_font("creditsfont", lang));
-		ds_map_set(global.font_map, concat("bigfont_", _language), lang_get_custom_font("bigfont", lang));
-		ds_map_set(global.font_map, concat("smallfont_", _language), lang_get_custom_font("smallfont", lang));
-		ds_map_set(global.font_map, concat("captionfont_", _language), lang_get_custom_font("captionfont", lang));
+		global.font_map[? string_concat("tutorialfont_", _language)] = lang_get_custom_font("tutorialfont", lang);
+		global.font_map[? string_concat("creditsfont_", _language)] = lang_get_custom_font("creditsfont", lang);
+		global.font_map[? string_concat("bigfont_", _language)] = lang_get_custom_font("bigfont", lang);
+		global.font_map[? string_concat("smallfont_", _language)] = lang_get_custom_font("smallfont", lang);
+		global.font_map[? string_concat("captionfont_", _language)] = lang_get_custom_font("captionfont", lang);
 	}
 }
 
@@ -28,16 +28,16 @@ function scr_lang_load_update()
 {
 	if (global.offload_lang != noone && global.offload_lang != "en")
 	{
-		var lang = ds_map_find_value(global.lang_map, global.offload_lang);
+		var lang = global.lang_map[? global.offload_lang];
 		if (lang_get_value_raw(global.offload_lang, "custom_graphics"))
 		{
-			var sprites = ds_map_find_value(global.lang_sprite_map, global.offload_lang);
+			var sprites = global.lang_sprite_map[? global.offload_lang];
 			var textures_to_offload = ds_list_create();
 			var key = ds_map_find_first(sprites);
 			var size = ds_map_size(sprites);
 			for (var i = 0; i < size; i++)
 			{
-				var sprite = ds_map_find_value(sprites, key);
+				var sprite = sprites[? key];
 				for (var j = 0; j < array_length(sprite.frames); j++)
 				{
 					var frame = sprite.frames[j];
@@ -50,7 +50,7 @@ function scr_lang_load_update()
 			}
 			for (var i = 0; i < ds_list_size(textures_to_offload); i++)
 			{
-				var tex = ds_list_find_value(textures_to_offload, i);
+				var tex = textures_to_offload[| i];
 				var spr = lang_get_texture(tex);
 				sprite_delete(spr);
 				ds_map_delete(global.lang_texture_map, tex);
@@ -66,11 +66,11 @@ function scr_lang_load_update()
 	else if (ds_list_size(global.lang_textures_to_load) > 0)
 	{
 		lang_tex--;
-		var name = ds_list_find_value(global.lang_textures_to_load, 0);
-		if (is_undefined(ds_map_find_value(global.lang_texture_map, name)))
+		var name = global.lang_textures_to_load[| 0];
+		if (is_undefined(global.lang_texture_map[? name]))
 		{
-			var filename = concat("lang/graphics/", name);
-			ds_map_set(global.lang_texture_map, name, sprite_add(filename, 1, false, false, 0, 0));
+			var filename = string_concat("lang/graphics/", name);
+			global.lang_texture_map[? name] = sprite_add(filename, 1, false, false, 0, 0);
 		}
 		ds_list_delete(global.lang_textures_to_load, 0);
 	}

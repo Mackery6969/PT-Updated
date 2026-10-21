@@ -34,7 +34,7 @@ function following_character_delete()
 			if (id != _id)
 			{
 				pos = ds_list_find_index(global.followerlist, id);
-				followid = (pos > 0) ? ds_list_find_value(global.followerlist, pos - 1) : noone;
+				followid = (pos > 0) ? global.followerlist[| pos - 1] : noone;
 			}
 		}
 	}
@@ -45,7 +45,7 @@ function following_character_calculate()
 	with (obj_followcharacter)
 	{
 		pos = ds_list_find_index(global.followerlist, id);
-		followid = (pos > 0) ? ds_list_find_value(global.followerlist, pos - 1) : noone;
+		followid = (pos > 0) ? global.followerlist[| pos - 1] : noone;
 	}
 }
 
@@ -63,7 +63,7 @@ function following_add_to_front()
 	}
 	ds_list_insert(global.followerlist, 0, id);
 	pos = ds_list_find_index(global.followerlist, id);
-	followid = (pos > 0) ? ds_list_find_value(global.followerlist, pos - 1) : noone;
+	followid = (pos > 0) ? global.followerlist[| pos - 1] : noone;
 	following_character_calculate();
 }
 

@@ -18,7 +18,7 @@ function scr_get_timer_string(_mins, _secs, _do_hours = false)
 		}
 		if (h < 10)
 		{
-			h = concat("0", h);
+			h = string_concat("0", h);
 		}
 		else
 		{
@@ -27,15 +27,15 @@ function scr_get_timer_string(_mins, _secs, _do_hours = false)
 	}
 	if (_mins < 10)
 	{
-		_mins = concat("0", _mins);
+		_mins = string_concat("0", _mins);
 	}
 	else
 	{
-		_mins = concat(_mins);
+		_mins = string_concat(_mins);
 	}
 	if (_do_hours)
 	{
-		return concat(h, ":", _mins, ":", _secs);
+		return string_concat(h, ":", _mins, ":", _secs);
 	}
-	return concat(_mins, ":", _secs);
+	return string_concat(_mins, ":", _secs);
 }

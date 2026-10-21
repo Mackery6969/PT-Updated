@@ -8,7 +8,7 @@ tiles[1] = array_create(0);
 tiles[2] = array_create(0);
 for (var i = 0; i < 3; i++)
 {
-	var lay_id = layer_get_id(concat("Tiles_Secret", i + 1));
+	var lay_id = layer_get_id(string_concat("Tiles_Secret", i + 1));
 	tilemap_sprite[i] = noone;
 	if (lay_id != -1)
 	{

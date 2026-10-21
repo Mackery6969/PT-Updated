@@ -4,80 +4,80 @@ if (instance_number(object_index) > 1)
 	exit;
 }
 global.steam_achievements = ds_map_create();
-ds_map_set(global.steam_achievements, "entrance1", "ACH_ENTRANCE_1");
-ds_map_set(global.steam_achievements, "entrance2", "ACH_ENTRANCE_2");
-ds_map_set(global.steam_achievements, "entrance3", "ACH_ENTRANCE_3");
-ds_map_set(global.steam_achievements, "medieval1", "ACH_MEDIEVAL_1");
-ds_map_set(global.steam_achievements, "medieval2", "ACH_MEDIEVAL_2");
-ds_map_set(global.steam_achievements, "medieval3", "ACH_MEDIEVAL_3");
-ds_map_set(global.steam_achievements, "ruin1", "ACH_RUIN_1");
-ds_map_set(global.steam_achievements, "ruin2", "ACH_RUIN_2");
-ds_map_set(global.steam_achievements, "ruin3", "ACH_RUIN_3");
-ds_map_set(global.steam_achievements, "dungeon1", "ACH_DUNGEON_1");
-ds_map_set(global.steam_achievements, "dungeon2", "ACH_DUNGEON_2");
-ds_map_set(global.steam_achievements, "dungeon3", "ACH_DUNGEON_3");
-ds_map_set(global.steam_achievements, "badland1", "ACH_BADLAND_1");
-ds_map_set(global.steam_achievements, "badland2", "ACH_BADLAND_2");
-ds_map_set(global.steam_achievements, "badland3", "ACH_BADLAND_3");
-ds_map_set(global.steam_achievements, "graveyard1", "ACH_GRAVEYARD_1");
-ds_map_set(global.steam_achievements, "graveyard2", "ACH_GRAVEYARD_2");
-ds_map_set(global.steam_achievements, "graveyard3", "ACH_GRAVEYARD_3");
-ds_map_set(global.steam_achievements, "farm1", "ACH_FARM_1");
-ds_map_set(global.steam_achievements, "farm2", "ACH_FARM_2");
-ds_map_set(global.steam_achievements, "farm3", "ACH_FARM_3");
-ds_map_set(global.steam_achievements, "saloon1", "ACH_SALOON_1");
-ds_map_set(global.steam_achievements, "saloon2", "ACH_SALOON_2");
-ds_map_set(global.steam_achievements, "saloon3", "ACH_SALOON_3");
-ds_map_set(global.steam_achievements, "plage1", "ACH_BEACH_1");
-ds_map_set(global.steam_achievements, "plage2", "ACH_BEACH_2");
-ds_map_set(global.steam_achievements, "plage3", "ACH_BEACH_3");
-ds_map_set(global.steam_achievements, "forest1", "ACH_FOREST_1");
-ds_map_set(global.steam_achievements, "forest2", "ACH_FOREST_2");
-ds_map_set(global.steam_achievements, "forest3", "ACH_FOREST_3");
-ds_map_set(global.steam_achievements, "space1", "ACH_SPACE_1");
-ds_map_set(global.steam_achievements, "space2", "ACH_SPACE_2");
-ds_map_set(global.steam_achievements, "space3", "ACH_SPACE_3");
-ds_map_set(global.steam_achievements, "minigolf1", "ACH_GOLF_1");
-ds_map_set(global.steam_achievements, "minigolf2", "ACH_GOLF_2");
-ds_map_set(global.steam_achievements, "minigolf3", "ACH_GOLF_3");
-ds_map_set(global.steam_achievements, "street1", "ACH_STREET_1");
-ds_map_set(global.steam_achievements, "street2", "ACH_STREET_2");
-ds_map_set(global.steam_achievements, "street3", "ACH_STREET_3");
-ds_map_set(global.steam_achievements, "sewer1", "ACH_SEWER_1");
-ds_map_set(global.steam_achievements, "sewer2", "ACH_SEWER_2");
-ds_map_set(global.steam_achievements, "sewer3", "ACH_SEWER_3");
-ds_map_set(global.steam_achievements, "industrial1", "ACH_INDUSTRIAL_1");
-ds_map_set(global.steam_achievements, "industrial2", "ACH_INDUSTRIAL_2");
-ds_map_set(global.steam_achievements, "industrial3", "ACH_INDUSTRIAL_3");
-ds_map_set(global.steam_achievements, "freezer1", "ACH_FREEZER_1");
-ds_map_set(global.steam_achievements, "freezer2", "ACH_FREEZER_2");
-ds_map_set(global.steam_achievements, "freezer3", "ACH_FREEZER_3");
-ds_map_set(global.steam_achievements, "chateau1", "ACH_CHATEAU_1");
-ds_map_set(global.steam_achievements, "chateau2", "ACH_CHATEAU_2");
-ds_map_set(global.steam_achievements, "chateau3", "ACH_CHATEAU_3");
-ds_map_set(global.steam_achievements, "kidsparty1", "ACH_KIDSPARTY_1");
-ds_map_set(global.steam_achievements, "kidsparty2", "ACH_KIDSPARTY_2");
-ds_map_set(global.steam_achievements, "kidsparty3", "ACH_KIDSPARTY_3");
-ds_map_set(global.steam_achievements, "war1", "ACH_WAR_1");
-ds_map_set(global.steam_achievements, "war2", "ACH_WAR_2");
-ds_map_set(global.steam_achievements, "war3", "ACH_WAR_3");
-ds_map_set(global.steam_achievements, "pepperman", "ACH_BOSS_1");
-ds_map_set(global.steam_achievements, "vigilante", "ACH_BOSS_2");
-ds_map_set(global.steam_achievements, "noise", "ACH_BOSS_3");
-ds_map_set(global.steam_achievements, "fakepep", "ACH_BOSS_4");
-ds_map_set(global.steam_achievements, "pizzaface", "ACH_BOSS_5");
-ds_map_set(global.steam_achievements, "sranks1", "ACH_SRANK_1");
-ds_map_set(global.steam_achievements, "sranks2", "ACH_SRANK_2");
-ds_map_set(global.steam_achievements, "sranks3", "ACH_SRANK_3");
-ds_map_set(global.steam_achievements, "sranks4", "ACH_SRANK_4");
-ds_map_set(global.steam_achievements, "sranks5", "ACH_SRANK_5");
-ds_map_set(global.steam_achievements, "pranks1", "ACH_PRANK_1");
-ds_map_set(global.steam_achievements, "pranks2", "ACH_PRANK_2");
-ds_map_set(global.steam_achievements, "pranks3", "ACH_PRANK_3");
-ds_map_set(global.steam_achievements, "pranks4", "ACH_PRANK_4");
-ds_map_set(global.steam_achievements, "pranks5", "ACH_PRANK_5");
-ds_map_set(global.steam_achievements, "halloween1", "ACH_HALLOWEEN_1");
-ds_map_set(global.steam_achievements, "halloween2", "ACH_HALLOWEEN_2");
+global.steam_achievements[? "entrance1"] = "ACH_ENTRANCE_1";
+global.steam_achievements[? "entrance2"] = "ACH_ENTRANCE_2";
+global.steam_achievements[? "entrance3"] = "ACH_ENTRANCE_3";
+global.steam_achievements[? "medieval1"] = "ACH_MEDIEVAL_1";
+global.steam_achievements[? "medieval2"] = "ACH_MEDIEVAL_2";
+global.steam_achievements[? "medieval3"] = "ACH_MEDIEVAL_3";
+global.steam_achievements[? "ruin1"] = "ACH_RUIN_1";
+global.steam_achievements[? "ruin2"] = "ACH_RUIN_2";
+global.steam_achievements[? "ruin3"] = "ACH_RUIN_3";
+global.steam_achievements[? "dungeon1"] = "ACH_DUNGEON_1";
+global.steam_achievements[? "dungeon2"] = "ACH_DUNGEON_2";
+global.steam_achievements[? "dungeon3"] = "ACH_DUNGEON_3";
+global.steam_achievements[? "badland1"] = "ACH_BADLAND_1";
+global.steam_achievements[? "badland2"] = "ACH_BADLAND_2";
+global.steam_achievements[? "badland3"] = "ACH_BADLAND_3";
+global.steam_achievements[? "graveyard1"] = "ACH_GRAVEYARD_1";
+global.steam_achievements[? "graveyard2"] = "ACH_GRAVEYARD_2";
+global.steam_achievements[? "graveyard3"] = "ACH_GRAVEYARD_3";
+global.steam_achievements[? "farm1"] = "ACH_FARM_1";
+global.steam_achievements[? "farm2"] = "ACH_FARM_2";
+global.steam_achievements[? "farm3"] = "ACH_FARM_3";
+global.steam_achievements[? "saloon1"] = "ACH_SALOON_1";
+global.steam_achievements[? "saloon2"] = "ACH_SALOON_2";
+global.steam_achievements[? "saloon3"] = "ACH_SALOON_3";
+global.steam_achievements[? "plage1"] = "ACH_BEACH_1";
+global.steam_achievements[? "plage2"] = "ACH_BEACH_2";
+global.steam_achievements[? "plage3"] = "ACH_BEACH_3";
+global.steam_achievements[? "forest1"] = "ACH_FOREST_1";
+global.steam_achievements[? "forest2"] = "ACH_FOREST_2";
+global.steam_achievements[? "forest3"] = "ACH_FOREST_3";
+global.steam_achievements[? "space1"] = "ACH_SPACE_1";
+global.steam_achievements[? "space2"] = "ACH_SPACE_2";
+global.steam_achievements[? "space3"] = "ACH_SPACE_3";
+global.steam_achievements[? "minigolf1"] = "ACH_GOLF_1";
+global.steam_achievements[? "minigolf2"] = "ACH_GOLF_2";
+global.steam_achievements[? "minigolf3"] = "ACH_GOLF_3";
+global.steam_achievements[? "street1"] = "ACH_STREET_1";
+global.steam_achievements[? "street2"] = "ACH_STREET_2";
+global.steam_achievements[? "street3"] = "ACH_STREET_3";
+global.steam_achievements[? "sewer1"] = "ACH_SEWER_1";
+global.steam_achievements[? "sewer2"] = "ACH_SEWER_2";
+global.steam_achievements[? "sewer3"] = "ACH_SEWER_3";
+global.steam_achievements[? "industrial1"] = "ACH_INDUSTRIAL_1";
+global.steam_achievements[? "industrial2"] = "ACH_INDUSTRIAL_2";
+global.steam_achievements[? "industrial3"] = "ACH_INDUSTRIAL_3";
+global.steam_achievements[? "freezer1"] = "ACH_FREEZER_1";
+global.steam_achievements[? "freezer2"] = "ACH_FREEZER_2";
+global.steam_achievements[? "freezer3"] = "ACH_FREEZER_3";
+global.steam_achievements[? "chateau1"] = "ACH_CHATEAU_1";
+global.steam_achievements[? "chateau2"] = "ACH_CHATEAU_2";
+global.steam_achievements[? "chateau3"] = "ACH_CHATEAU_3";
+global.steam_achievements[? "kidsparty1"] = "ACH_KIDSPARTY_1";
+global.steam_achievements[? "kidsparty2"] = "ACH_KIDSPARTY_2";
+global.steam_achievements[? "kidsparty3"] = "ACH_KIDSPARTY_3";
+global.steam_achievements[? "war1"] = "ACH_WAR_1";
+global.steam_achievements[? "war2"] = "ACH_WAR_2";
+global.steam_achievements[? "war3"] = "ACH_WAR_3";
+global.steam_achievements[? "pepperman"] = "ACH_BOSS_1";
+global.steam_achievements[? "vigilante"] = "ACH_BOSS_2";
+global.steam_achievements[? "noise"] = "ACH_BOSS_3";
+global.steam_achievements[? "fakepep"] = "ACH_BOSS_4";
+global.steam_achievements[? "pizzaface"] = "ACH_BOSS_5";
+global.steam_achievements[? "sranks1"] = "ACH_SRANK_1";
+global.steam_achievements[? "sranks2"] = "ACH_SRANK_2";
+global.steam_achievements[? "sranks3"] = "ACH_SRANK_3";
+global.steam_achievements[? "sranks4"] = "ACH_SRANK_4";
+global.steam_achievements[? "sranks5"] = "ACH_SRANK_5";
+global.steam_achievements[? "pranks1"] = "ACH_PRANK_1";
+global.steam_achievements[? "pranks2"] = "ACH_PRANK_2";
+global.steam_achievements[? "pranks3"] = "ACH_PRANK_3";
+global.steam_achievements[? "pranks4"] = "ACH_PRANK_4";
+global.steam_achievements[? "pranks5"] = "ACH_PRANK_5";
+global.steam_achievements[? "halloween1"] = "ACH_HALLOWEEN_1";
+global.steam_achievements[? "halloween2"] = "ACH_HALLOWEEN_2";
 
 achievements_update = [];
 achievements_notify = [];
@@ -173,7 +173,7 @@ add_achievement_notify("pal_money", noone, function(_array)
 		{
 			for (var j = 0; j < 5; j++)
 			{
-				if (ini_read_real("Toppin", concat(lvl[i], j + 1), false))
+				if (ini_read_real("Toppin", string_concat(lvl[i], j + 1), false))
 				{
 					_money += 10;
 				}
@@ -240,16 +240,16 @@ add_achievement_notify("pal_tv", noone, function(_array)
 			"war"
 		];
 		var map = ds_map_create();
-		ds_map_set(map, "p", 5);
-		ds_map_set(map, "s", 4);
-		ds_map_set(map, "a", 3);
-		ds_map_set(map, "b", 2);
-		ds_map_set(map, "c", 1);
-		ds_map_set(map, "d", 0);
+		map[? "p"] = 5;
+		map[? "s"] = 4;
+		map[? "a"] = 3;
+		map[? "b"] = 2;
+		map[? "c"] = 1;
+		map[? "d"] = 0;
 		for (var i = 0; i < array_length(lvl); i++)
 		{
 			var rank = ini_read_string("Ranks", lvl[i], "d");
-			if (ds_map_find_value(map, rank) < ds_map_find_value(map, "p"))
+			if (map[? rank] < map[? "p"])
 			{
 				_found = true;
 			}
@@ -314,16 +314,16 @@ add_achievement_notify("pal_golden", noone, function(_array)
 		var _found = false;
 		var lvl = ["entrance", "medieval", "ruin", "dungeon", "badland", "graveyard", "farm", "saloon", "plage", "forest", "space", "minigolf", "street", "sewer", "industrial", "freezer", "chateau", "kidsparty", "war"];
 		var map = ds_map_create();
-		ds_map_set(map, "p", 5);
-		ds_map_set(map, "s", 4);
-		ds_map_set(map, "a", 3);
-		ds_map_set(map, "b", 2);
-		ds_map_set(map, "c", 1);
-		ds_map_set(map, "d", 0);
+		map[? "p"] = 5;
+		map[? "s"] = 4;
+		map[? "a"] = 3;
+		map[? "b"] = 2;
+		map[? "c"] = 1;
+		map[? "d"] = 0;
 		for (var i = 0; i < array_length(lvl); i++)
 		{
 			var rank = ini_read_string("Ranks", lvl[i], "d");
-			if (ds_map_find_value(map, rank) < ds_map_find_value(map, "s"))
+			if (map[? rank] < map[? "s"])
 			{
 				_found = true;
 			}
@@ -428,7 +428,7 @@ add_achievement_notify("pal_goldemanne", noone, function(_array)
 			var b = lvl[i];
 			for (var j = 0; j < 3; j++)
 			{
-				array_push(ach, concat(b, j + 1));
+				array_push(ach, string_concat(b, j + 1));
 			}
 		}
 		var _found = false;
@@ -532,7 +532,7 @@ var pats =
 for (var i = 0; i < array_length(pats); i++)
 {
 	var pat = pats[i];
-	var p = add_achievement_notify(concat("pal_", pat[0]), noone, function(_array)
+	var p = add_achievement_notify(string_concat("pal_", pat[0]), noone, function(_array)
 	{
 		var type = _array[0];
 		var arr = _array[1];
@@ -649,7 +649,7 @@ pats =
 for (var i = 0; i < array_length(pats); i++)
 {
 	var pat = pats[i];
-	var p = add_achievement_notify(concat("pal_", pat[0]), function()
+	var p = add_achievement_notify(string_concat("pal_", pat[0]), function()
 	{
 		achievement_add_variable("count", 0, false, true);
 	}, function(_array)
@@ -911,7 +911,7 @@ add_achievement_notify("pal_grannykisses", function()
 	var arr = _array[1];
 	if (type == notifications.touched_granny)
 	{
-		var b = achievement_get_variable(concat("granny_", arr[0]));
+		var b = achievement_get_variable(string_concat("granny_", arr[0]));
 		if (!is_undefined(b))
 		{
 			b.value = true;
@@ -964,7 +964,7 @@ add_achievement_notify("pal_towerguy", function()
 	var arr = _array[1];
 	if (type == notifications.ptg_seen)
 	{
-		var b = achievement_get_variable(concat("towerguy_", arr[0]));
+		var b = achievement_get_variable(string_concat("towerguy_", arr[0]));
 		if (!is_undefined(b))
 		{
 			b.value = true;

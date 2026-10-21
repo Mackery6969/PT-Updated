@@ -26,8 +26,8 @@ if (obj_player.ispeppino != ispeppino)
 			}
 		}
 	}
-	palettetitle = lang_get_value(concat("dresser_", palettes[paletteselect][0], "title"));
-	palettedesc = lang_get_value_newline(concat("dresser_", palettes[paletteselect][0]));
+	palettetitle = lang_get_value(string_concat("dresser_", palettes[paletteselect][0], "title"));
+	palettedesc = lang_get_value_newline(string_concat("dresser_", palettes[paletteselect][0]));
 }
 showtext = place_meeting(x, y, obj_player);
 if (instance_exists(obj_transfotip))

@@ -1,13 +1,7 @@
-/// @description Returns the depth of the specified object.
-/// @param {Number} obj The index of the object to check
-/// @return {Number} depth of the object
-
-function object_get_depth(argument0)
+/// @description Returns the depth an object had in GameMaker 1.x, or 0 if it had none.
+/// @param {Asset.GMObject} _obj The object to look up
+/// @return {Real}
+function object_get_depth(_obj)
 {
-	var objID = argument0;
-	var ret = 0;
-	if (objID >= 0) && (objID < array_length(global.__objectID2Depth)) {
-		ret = global.__objectID2Depth[objID];
-	} // end if
-	return ret;
+	return global.object_depths[$ object_get_name(_obj)] ?? 0;
 }

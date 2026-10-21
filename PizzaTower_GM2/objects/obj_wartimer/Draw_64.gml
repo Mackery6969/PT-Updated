@@ -34,12 +34,12 @@ draw_set_valign(fa_middle);
 var t = string(minutes);
 if (string_length(t) < 2)
 {
-	t = concat("0", minutes);
+	t = string_concat("0", minutes);
 }
 var q = string(seconds);
 if (string_length(q) < 2)
 {
-	q = concat("0", seconds);
+	q = string_concat("0", seconds);
 }
 var x2 = xx - 65;
 var y2 = yy - 57;

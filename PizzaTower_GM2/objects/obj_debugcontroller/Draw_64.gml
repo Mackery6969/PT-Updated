@@ -17,34 +17,34 @@ draw_set_alpha(1);
 var ys = 128 - (16 * ds_list_size(text_list));
 for (var i = 0; i < ds_list_size(text_list); i++)
 {
-	var t = array_get(ds_list_find_value(text_list, i), 0);
-	var txt = array_get(ds_list_find_value(text_list, i), 1);
+	var t = text_list[| i][0];
+	var txt = text_list[| i][1];
 	var str = txt;
 	var c = c_white;
 	switch (t)
 	{
 		case debug_texttypes.error:
-			str = concat("[ERROR] ", txt);
+			str = string_concat("[ERROR] ", txt);
 			c = c_red;
 			break;
 		case debug_texttypes.debug_log:
-			str = concat("[DEBUG] ", txt);
+			str = string_concat("[DEBUG] ", txt);
 			c = c_gray;
 			break;
 		case debug_texttypes.command:
-			str = concat("[COMMAND] ", txt);
+			str = string_concat("[COMMAND] ", txt);
 			c = c_green;
 			break;
 	}
 	draw_text_color(8, ys + (16 * i), str, c, c, c, c, 1);
 }
-draw_text(8, 128, concat("> ", input_text));
+draw_text(8, 128, string_concat("> ", input_text));
 if (input_text != "")
 {
 	search_y += 8;
 	for (var w = 0; w < ds_list_size(search_commands); w++)
 	{
-		var b = ds_list_find_value(search_commands, w);
+		var b = search_commands[| w];
 		if (b != undefined)
 		{
 			draw_text_color(8, search_y + (16 * w), b, c_white, c_white, c_white, c_white, 1);

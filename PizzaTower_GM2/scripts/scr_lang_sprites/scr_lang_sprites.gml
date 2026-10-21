@@ -1,6 +1,6 @@
 function lang_sprites_parse(_langname)
 {
-	var file = file_text_open_read(concat("lang/graphics/", _langname, ".json"));
+	var file = file_text_open_read(string_concat("lang/graphics/", _langname, ".json"));
 	var str = "";
 	while (!file_text_eof(file))
 	{
@@ -10,7 +10,7 @@ function lang_sprites_parse(_langname)
 	file_text_close(file);
 	var json = json_parse(str);
 	trace(json);
-	ds_map_set(global.lang_sprite_map, _langname, ds_map_create());
+	global.lang_sprite_map[? _langname] = ds_map_create();
 	var arr = json.sprites;
 	for (var i = 0; i < array_length(arr); i++)
 	{
@@ -20,7 +20,7 @@ function lang_sprites_parse(_langname)
 		{
 			continue;
 		}
-		ds_map_set(ds_map_find_value(global.lang_sprite_map, _langname), asset, spr);
+		global.lang_sprite_map[? _langname][? asset] = spr;
 		var frame_arr = spr.frames;
 		for (var j = 0; j < array_length(frame_arr); j++)
 		{
@@ -74,7 +74,7 @@ function lang_get_sprite(_sprname)
 {
 	if (lang_get_value("custom_graphics"))
 	{
-		var g = ds_map_find_value(ds_map_find_value(global.lang_sprite_map, global.lang), _sprname);
+		var g = global.lang_sprite_map[? global.lang][? _sprname];
 		if (!is_undefined(g))
 		{
 			return g;
@@ -104,7 +104,7 @@ function lang_get_frame(_spritedata, _frame)
 
 function lang_get_texture(_langname)
 {
-	var g = ds_map_find_value(global.lang_texture_map, _langname);
+	var g = global.lang_texture_map[? _langname];
 	if (!is_undefined(g))
 	{
 		return g;

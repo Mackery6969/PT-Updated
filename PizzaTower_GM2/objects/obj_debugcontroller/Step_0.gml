@@ -41,13 +41,13 @@ if (active)
 		search_w = 0;
 		for (var i = 0; i < ds_list_size(command_list); i++)
 		{
-			var b = ds_list_find_value(command_list, i);
+			var b = command_list[| i];
 			var s = b.command_id;
 			var d = string_split(input_text, " ");
 			var t = d[0];
 			if (input_text != "" && string_copy(s, 1, string_length(t)) == t)
 			{
-				var txt = concat(b.command_id, " ", b.format, " - ", b.description);
+				var txt = string_concat(b.command_id, " ", b.format, " - ", b.description);
 				ds_list_add(search_commands, txt);
 				var w = string_width(txt);
 				if (w > search_w)
