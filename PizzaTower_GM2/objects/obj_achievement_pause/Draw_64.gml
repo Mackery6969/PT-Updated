@@ -41,14 +41,7 @@ for (var i = 0; i < array_length(achievements); i++)
 	}
 	if (!achievements[i].got)
 	{
-		if (sprite != spr_achievement_bosses)
-		{
-			ix += array_length(achievements);
-		}
-		else
-		{
-			ix += 5;
-		}
+		ix += (sprite != spr_achievement_bosses) ? array_length(achievements) : 5;
 	}
 	draw_sprite_ext(sprite, ix, xx + (((CAM_WIDTH / 2) - xx) * i), yy, 1, 1, 0, c_white, (i == achievement) ? 1 : 0.5);
 }
