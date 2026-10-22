@@ -69,7 +69,7 @@ function scr_lang_load_update()
 		var name = global.lang_textures_to_load[| 0];
 		if (is_undefined(global.lang_texture_map[? name]))
 		{
-			var filename = string_concat("lang/graphics/", name);
+			var filename = string_concat("lang/graphics/", filename_name(name));
 			global.lang_texture_map[? name] = sprite_add(filename, 1, false, false, 0, 0);
 		}
 		ds_list_delete(global.lang_textures_to_load, 0);
